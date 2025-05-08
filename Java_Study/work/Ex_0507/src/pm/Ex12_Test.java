@@ -13,8 +13,16 @@ public class Ex12_Test {
 		 * 
  
 		 */
+		for(int i = 0;i<4;i++) {
+			for(int k=4;k>i;k--) {
+				System.out.printf("*\s");				
+			}
+			System.out.println();			
+		}
+		System.out.println("================");
+		
 		for(int j=0;j<4;j++) {			
-			for(int i=1;i<=4-j;i++) {
+			for(int i=1;i+j<=4;i++) {
 				System.out.printf("*\s");
 			}
 			System.out.println();
@@ -42,7 +50,30 @@ public class Ex12_Test {
 			}
 			System.out.println();
 			}
+	
+		System.out.println("================");
 		
+		for(int i=0;i<4;i++) {
+			for(int k=0;k<i;k++) {
+				System.out.print("  ");
+				
+			}
+			for(int j=4;j>i;j--) {
+				System.out.print("* ");
+			}
+			System.out.println();
+			}
+	
+		System.out.println("================");
+		for(int i=0;i<4;i++) {
+			for(int j=0;j<4;j++) {
+				if(j>=i)
+					System.out.print("* ");
+				else
+					System.out.print("  ");
+			}
+			System.out.println();
+		}		
 		System.out.println("================");
 		/*
 		 문제3)구구단을 다음과 같이 출력하는 반복문을 구현
@@ -54,7 +85,7 @@ public class Ex12_Test {
 		 */
 		for(int i=1;i<=9;i++) {
 			for(int j=2;j<=9;j++) {
-				System.out.printf("%d*%d=%d ",j,i,i*j);
+				System.out.printf("%d*%d=%-2d\t",j,i,i*j);
 			}
 			System.out.println();
 		}
