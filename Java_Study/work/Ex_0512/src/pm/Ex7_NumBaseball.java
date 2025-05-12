@@ -48,17 +48,24 @@ public class Ex7_NumBaseball {
 			}//사용자가 입력한 문자열을 숫자로 변경하여 user에 삽입
 			
 			//스트라이크 카운트하는 반복문
-			for(int i=0;i<str.length();i++) {
-				if(user[i] == ans[i]) {
+//			for(int i=0;i<str.length();i++) {
+//				if(user[i] == ans[i]) {
+//					strike_count++;
+//				}else {
+//					for(int j=0;j<str.length();j++) {
+//						if(user[i]==ans[j]) {
+//							ball_count++;
+//						}
+//					}
+//				}
+//			}
+			for(int i=0;i<ans.length;i++) {
+				if(user[i]==ans[(i+1)%3]||user[i]==ans[(i+2)%3])
+					ball_count++;
+
+				if(user[i]==ans[i])
 					strike_count++;
-				}else {
-					for(int j=0;j<str.length();j++) {
-						if(user[i]==ans[j]) {
-							ball_count++;
-						}
-					}
 				}
-			}
 			if(strike_count==3) {
 				System.out.println("홈런");
 			}else
