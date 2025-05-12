@@ -1,6 +1,7 @@
 package pm;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Ex8_Array {
 	public static void main(String[] args) {
@@ -15,7 +16,8 @@ public class Ex8_Array {
 	다시 난수를 발생시키고 다시 [1]~[5]을 비교
  */
 		
-		int[] lotto = new int[6];
+//		내가 짠 코드
+		Integer[] lotto = new Integer[6];
 		boolean dup = false;
 		
 		for(int i=0;i<lotto.length;i++) {
@@ -33,12 +35,12 @@ public class Ex8_Array {
 				}while(dup);
 			}
 		}
-		for(int i=0;i<lotto.length;i++)
-			System.out.printf("%d\s",lotto[i]);
+		Arrays.sort(lotto);
+		System.out.println(Arrays.toString(lotto));
 		
 		System.out.println("\n===========================");	
 		
-		lotto = new int[6];
+		lotto = new Integer[6];
 		dup = false;
 		
  		//챗지피티의 반복 두번만에 끝내기<<<<절대 생각 못했을듯
@@ -54,9 +56,8 @@ public class Ex8_Array {
 			}
 			if(!dup) i++;
 		}
-		Arrays.sort(lotto);
-		for(int i=0;i<lotto.length;i++)
-			System.out.printf("%d\s",lotto[i]);
+		Arrays.sort(lotto,Collections.reverseOrder());
+		System.out.println(Arrays.toString(lotto));
 
 		
 		
@@ -80,7 +81,5 @@ public class Ex8_Array {
 		for(int i=0;i<lotto.length;i++)
 			System.out.printf("%d\s",lotto[i]);
 		 */
-		
-		
 	}
 }
