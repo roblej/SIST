@@ -31,11 +31,11 @@ public class Ex7_NumBaseball {
 			}
 			if(!dup) i++;
 		}
-//		for(int i=0;i<ans.length;i++)
-//			System.out.printf("%d\s",ans[i]);
-//		System.out.println();
+		for(int i=0;i<ans.length;i++)
+			System.out.printf("%d\s",ans[i]);
+		System.out.println();
 		
-		System.out.println("3자리 숫자를 입력하세요:");
+		System.out.println("3자리 숫자를 입력하세요");
 		Scanner scan = new Scanner(System.in);
 		do {
 			strike_count=0;
@@ -48,24 +48,26 @@ public class Ex7_NumBaseball {
 			}//사용자가 입력한 문자열을 숫자로 변경하여 user에 삽입
 			
 			//스트라이크 카운트하는 반복문
-//			for(int i=0;i<str.length();i++) {
-//				if(user[i] == ans[i]) {
-//					strike_count++;
-//				}else {
-//					for(int j=0;j<str.length();j++) {
-//						if(user[i]==ans[j]) {
-//							ball_count++;
-//						}
-//					}
-//				}
-//			}
+
 			for(int i=0;i<ans.length;i++) {
-				if(user[i]==ans[(i+1)%3]||user[i]==ans[(i+2)%3])
+				if(user[i]==ans[(i+1)%ans.length]||user[i]==ans[(i+2)%ans.length])
 					ball_count++;
 
 				if(user[i]==ans[i])
 					strike_count++;
 				}
+//			기존 로직
+//			for(int i=0;i<str.length();i++) {
+//			if(user[i] == ans[i]) {
+//				strike_count++;
+//			}else {
+//				for(int j=0;j<str.length();j++) {
+//					if(user[i]==ans[j]) {
+//						ball_count++;
+//					}
+//				}
+//			}
+//		}
 			if(strike_count==3) {
 				System.out.println("홈런");
 			}else
@@ -74,5 +76,12 @@ public class Ex7_NumBaseball {
 		}while(strike_count !=3);
 		
 		
+//		String[] my = scan.nextLine().split("");
+//		for(int i=0;i<my.length;i++) {
+////			char ch = my.charAt(i);
+////			user[i]=ch-48;
+//		}
+//		
+//		System.out.println(Arrays.deepToString(my));
 	}
 }
