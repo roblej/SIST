@@ -18,11 +18,15 @@ public class Ex6_main {
 			
 			System.out.print(bb.getCount() +"차 시도:");
 			String my = scan.nextLine();
+			if(my.length()>3) {
+				System.out.println("3자만 입력하세요.");
+				continue;
+			}
 			bb.myAnswer(my);
 			
 			System.out.println(bb.getBallStr());
 
-		}while(!(bb.getStrike_count()==3));
+		}while(bb.getStrike_count()!=3);
 		
 		System.out.println(bb.result());
 
