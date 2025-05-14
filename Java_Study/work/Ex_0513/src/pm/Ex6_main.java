@@ -14,14 +14,13 @@ public class Ex6_main {
 		
 		do {
 			bb.setCount();
-			bb.setBall_count(0);
-			bb.setStrike_count(0);
+			bb.resetBallStr();
 			
 			System.out.print(bb.getCount() +"차 시도:");
 			String my = scan.nextLine();
 			bb.myAnswer(my);
 			
-			System.out.println(bb.printResult());
+			System.out.println(bb.getBallStr());
 
 		}while(!(bb.getStrike_count()==3));
 		

@@ -14,10 +14,6 @@ public class Ex6_Baseball {
 		return strike_count;
 	}
 	
-	public void setStrike_count(int strike_count) {
-		this.strike_count = strike_count;
-	}
-	
 	public int getCount() {
 		return count;
 	}
@@ -26,10 +22,11 @@ public class Ex6_Baseball {
 		this.count = ++count;
 	}
 	
-	public void setBall_count(int ball_count) {
-		this.ball_count = ball_count;
+	public void resetBallStr() {
+		this.strike_count = 0;
+		this.ball_count = 0;
 	}
-
+	
 	public void init() {
 		//3자리 랜덤 배열에 집어넣기
 		for(int i=0;i<ans.length;) {
@@ -70,7 +67,7 @@ public class Ex6_Baseball {
 		return ball_count;
 	}
 	    
-	public String printResult() {
+	public String getBallStr() {
 	    int strikes = strikeCount();
 	    int balls = ballCount();
 
