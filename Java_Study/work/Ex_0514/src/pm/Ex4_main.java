@@ -1,6 +1,5 @@
 package pm;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Ex4_main {
@@ -28,18 +27,24 @@ public class Ex4_main {
 		
 		int coin = scan.nextInt();
 		
-//		String[] res = v1.insert1(coin);
-//		System.out.print(Arrays.toString(res)+" 선택 :");
-		
-		String res = v1.insert(coin);
-		System.out.print(res+" 선택 :");
+		String[] res = v1.insert(coin);
+		for(int i=0;i<res.length;i++) {
+			if(res[i]!=null) {
+				System.out.printf("%d\s",i+1);
+				System.out.printf("%s\s",res[i]);
+			}
+		}
+		System.out.printf("\t선택 :");
 		
 		int choice = scan.nextInt();
 		
-		int enough = v1.choice(choice);
-//		int enough = v1.choice1(choice);
-		System.out.println(v1.ar[choice-1].getD_name()+"를 선택하셨습니다.");
-		System.out.println("잔돈" + enough + "원 입니다.");
+//		int change = v1.choice(choice);
+//		System.out.println(res[choice-1]+"를 선택하셨습니다.");
+//		System.out.println("잔돈" + change + "원 입니다.");
+		
+		Ex4_drink d= v1.getDrink(choice);
+		System.out.printf("선택한 음료는 :%s, 잔돈:%d원 입니다. ",
+				d.getD_name(),coin - d.getPrice());
 		
 		scan.close();
 	}
