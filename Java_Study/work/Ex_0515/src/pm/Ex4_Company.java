@@ -53,24 +53,25 @@ public class Ex4_Company {
 					break;
 				}
 				}
+				break;
 			case 1:
 				for(i=0;i<al.size();i++) {
 				if((al.get(i).getName()).equals(info)) {
-					break;	
+					break;
 				}
-				}
+				}break;
 			case 2:
 				for(i=0;i<al.size();i++) {
 				if(al.get(i).getPosition().equals(info)) {
 					break;
 				}
-				}
+				}break;
 			case 3:
 				for(i=0;i<al.size();i++) {
 				if(al.get(i).getDepartment().equals(info)) {
 					break;
 				}
-				}
+				}break;
 			default:
 				System.out.println("사용자가 존재하지 않습니다");
 				System.exit(0);
