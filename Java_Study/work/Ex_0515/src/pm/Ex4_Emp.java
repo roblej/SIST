@@ -30,7 +30,7 @@ public class Ex4_Emp {
 	}
 
 	public String getPosition() {
-		return position;
+		return position;	
 	}
 
 	public void setPosition(String position) {
