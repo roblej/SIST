@@ -14,23 +14,12 @@ public class Ex8_Frame extends JFrame{
  마우스 클릭시 원 생성, 아래로 떨어짐 구현
  */
 	JPanel p;
-	int x = 220;
-	int y = 170;
-	
-	Thread t1 = new Thread() {//클래스 만들어야함. 내부클래스 x and arraylist사용
-
-		@Override
-		public void run() {
-			// TODO Auto-generated method stub
-			System.out.println("test");
-			while(y>p.getHeight()-40){
-				y=-10;
-				p.repaint();
-			}
-		}
-	};
-	
+	int x;
+	int y;
+	Ex8_Frame f;
 	public Ex8_Frame() {
+		f=this;
+		
 		p = new JPanel() {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -41,7 +30,7 @@ public class Ex8_Frame extends JFrame{
 				buf_g.fillOval(x, y, 20, 20);
 				//사각형이 그려진 이미지를 JPanel에 넣기
 				g.drawImage(buf,x,y,this);
-				t1.start();
+
 				
 			}
 		};
@@ -50,7 +39,6 @@ public class Ex8_Frame extends JFrame{
 		setBounds(300, 100, 500, 500);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		t1.start();
 		
 		this.addMouseListener(new MouseAdapter() {
 
@@ -59,9 +47,10 @@ public class Ex8_Frame extends JFrame{
 				// TODO Auto-generated method stub
 				x = e.getX();
 				y= e.getY();
-				p.repaint();
-				System.out.println(x);
-				System.out.println(y);
+//				System.out.println(y);
+//				p.repaint();
+				Ex8_Thread t1= new Ex8_Thread(f);
+				t1.start();
 			}
 			
 		});
