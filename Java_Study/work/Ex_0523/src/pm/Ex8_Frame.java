@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,8 +18,12 @@ public class Ex8_Frame extends JFrame{
 	int x;
 	int y;
 	Ex8_Frame f;
+	ArrayList<Ex8_Thread> al=new ArrayList<Ex8_Thread>(3);
+	
+	
 	public Ex8_Frame() {
 		f=this;
+		
 		
 		p = new JPanel() {
 			@Override
@@ -29,7 +34,7 @@ public class Ex8_Frame extends JFrame{
 				buf_g.setColor(Color.orange);
 				buf_g.fillOval(x, y, 20, 20);
 				//사각형이 그려진 이미지를 JPanel에 넣기
-				g.drawImage(buf,x,y,this);
+				g.drawImage(buf,0,0,this);
 
 				
 			}
@@ -50,7 +55,11 @@ public class Ex8_Frame extends JFrame{
 //				System.out.println(y);
 //				p.repaint();
 				Ex8_Thread t1= new Ex8_Thread(f);
-				t1.start();
+				al.add(t1);
+				
+				for(int i=0;i<al.size();i++) {
+					t1.start();
+				}
 			}
 			
 		});
