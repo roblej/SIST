@@ -56,10 +56,9 @@ public class Ex3_Meteor extends Thread {
 				exp.pt.y=(int)(rect.getCenterY()-(int)(exp.size/2));
 				
 				//Ex3_Frame의 멤버변수인 ex_list에 폭발객체를 저장
-				f.m_list.remove(this);
-				f.b_list.remove(i);
 				f.ex_list.add(exp);
-				break inf;
+				f.b_list.remove(i);
+				break inf;//또는 while안에 변수를넣고 해당변수를 false로 변경
 				}
 			}
 				
