@@ -26,18 +26,7 @@ public class Ex3_Bullet extends Thread {
 
 			if(rect.y<0)
 				break;
-//			for(int i=0;i<f.m_list.size();i++){
-//				if(rect.intersects(f.m_list.get(i).rect)) {
-//					try {
-//						sleep(200);
-//					} catch (Exception e) {
-//						// TODO: handle exception
-//					}
-//					f.b_list.remove(this);
-//					
-//				}
-//				
-//			}
+
 			try {
 				Thread.sleep(20);
 			} catch (Exception e) {

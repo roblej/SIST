@@ -29,9 +29,7 @@ public class Ex3_Frame extends JFrame {
 	Me me = new Me();
 	//2번째 작업--------------------------------------
 	Image meteor_img;
-	Image bullet_img;
 	ArrayList<Ex3_Meteor> m_list = new ArrayList<Ex3_Meteor>();
-	ArrayList<Ex3_Bullet> b_list = new ArrayList<Ex3_Bullet>();
 	boolean chk=true;
 	
 	//운석을 주기적으로 생성하여 m_list에 저장하는 스레드
@@ -39,28 +37,26 @@ public class Ex3_Frame extends JFrame {
 		@Override
 		public void run() {
 			//운석 객체 생성
-
 			while(chk) {
-			Ex3_Meteor m = new Ex3_Meteor(Ex3_Frame.this,
-					meteor_img.getWidth(p),//32 - 운석객체 안에 있는 rect에 w로 지정
-					meteor_img.getHeight(p));//28-운석객체 안에 있는 rect에 h로 지정
-			//운석의 x좌표
-			int x = (int)(Math.random()*p.getSize().width-m.rect.width);
-			
-			m.rect.x=x;
-			m.rect.y=-30;//화면 위에서 시작
-			
-			m_list.add(m);//생성된 운석객체를 ArrayList에 저장
-			m.start();//운석객체가 스레드이므로 스스로 움직인다
-			
-			try {
-				Thread.sleep(1000);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-		}//while의 끝
-		
-	}
+				Ex3_Meteor m = new Ex3_Meteor(Ex3_Frame.this,
+						meteor_img.getWidth(p),//32 - 운석객체 안에 있는 rect에 w로 지정
+						meteor_img.getHeight(p));//28-운석객체 안에 있는 rect에 h로 지정
+				//운석의 x좌표
+				int x = (int)(Math.random()*p.getSize().width-m.rect.width);
+				
+				m.rect.x=x;
+				m.rect.y=-30;//화면 위에서 시작
+				
+				m_list.add(m);//생성된 운석객체를 ArrayList에 저장
+				m.start();//운석객체가 스레드이므로 스스로 움직인다
+				
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}//while의 끝
+		}	
 	};
 //	=====================================================================================
 //	3번째 작업
@@ -70,9 +66,9 @@ public class Ex3_Frame extends JFrame {
 	//폭발이미지들을 배열로 준비
 	Image[] exp_ar = new Image[27];
 	//-----------------------------------------------------------------------------------
-	
-	
-	
+	//4번째 작업
+	Image bullet_img;
+	ArrayList<Ex3_Bullet> b_list = new ArrayList<Ex3_Bullet>();
 	
 	public Ex3_Frame() {
 		
@@ -118,19 +114,15 @@ public class Ex3_Frame extends JFrame {
 					g.drawImage(img, exp.pt.x, exp.pt.y, this);
 					
 					if(exp.move_index()){//true인 경우 폭발객체가 가지고 있는 index가 27 이상
-										//즉, 폭발이 끝났다는 것이므로 폭발객체를 list에서 삭제
-						
+										//즉, 폭발이 끝났다는 것이므로 폭발객체를 list에서 삭제	
 						ex_list.remove(exp);
 						
-					}
-					
-					
+					}		
 				}
 				for(int i=0;i<b_list.size();i++) {
 					Ex3_Bullet b = b_list.get(i);
-					g.drawImage(bullet_img, b.rect.x, b.rect.y, this);
+					g.drawImage(bullet_img, b.rect.x, b.rect.y, b.rect.width,b.rect.height, this);
 				}
-				
 			}
 			
 		};
@@ -168,7 +160,10 @@ public class Ex3_Frame extends JFrame {
 				
 				switch(key) {
 				case KeyEvent.VK_SPACE:
-					Ex3_Bullet b = new Ex3_Bullet(Ex3_Frame.this,me.rect.x,me.rect.y);
+					int x = me.rect.x+(me.rect.width/2-bullet_img.getWidth(p)/2);
+					int y = me.rect.y;
+					
+					Ex3_Bullet b = new Ex3_Bullet(Ex3_Frame.this,x,y);
 					b_list.add(b);
 					b.start();
 					break;
@@ -183,9 +178,9 @@ public class Ex3_Frame extends JFrame {
 				}//switch
 				p.repaint();
 			}
-			
 		});
 	}
+	
 	private void init_game() {
 		//크기 객체(Dimnetion)을 가지고 JPanel의 크기로 예약하자 
 		p.setPreferredSize(d);
@@ -193,6 +188,7 @@ public class Ex3_Frame extends JFrame {
 		//크기가 지정된 jpanel을 현재 창 가운데 추가(pack때문에 자동 사이즈 지정)
 		this.add(p);
 	}
+	
 	private void init_me_pos(){
 		//주인공 이미지의 초기 위치를 지정하는 함수
 		
