@@ -30,7 +30,6 @@ public class Ex7_Frame extends JFrame {
 	//파일처리를 위한 객체
 	File f;
 	BufferedInputStream bis;
-	FileInputStream fis;
 	
 	public Ex7_Frame() {
 		
@@ -64,6 +63,7 @@ public class Ex7_Frame extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				// TODO Auto-generated method stub
+				closed();
 				System.exit(0);
 			}
 		});
@@ -72,6 +72,7 @@ public class Ex7_Frame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				closed();
 				System.exit(0);
 			}
 		});
@@ -92,8 +93,8 @@ public class Ex7_Frame extends JFrame {
 					if(f.exists()) {						
 						//스트림과 f를 연동
 						try {
-							fis = new FileInputStream(f);
-							bis = new BufferedInputStream(fis);
+							
+							bis = new BufferedInputStream(new FileInputStream(f));
 							
 							//size와 byte배열 선언
 							int size = -1;
@@ -107,18 +108,10 @@ public class Ex7_Frame extends JFrame {
 								sb.append(str);
 							}
 							ta.setText(sb.toString());
-							
+							ta.setCaretPosition(0);//화면 맨 위로
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
-						}finally {
-							try {
-								fis.close();
-								bis.close();
-							} catch (IOException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
 						}
 					}
 				}
@@ -127,7 +120,16 @@ public class Ex7_Frame extends JFrame {
 		
 	}//생성자의 끝
 	
-	
+	private void closed() {
+		if(bis!=null) {
+			try {
+				bis.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
