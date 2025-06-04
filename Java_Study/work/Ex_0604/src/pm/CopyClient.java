@@ -5,10 +5,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class Ex3_CopyClient extends Thread {
+public class CopyClient extends Thread {
 
 	Socket s;
-	Ex3_ChatServer server;
+	ChatServer server;
 	
 	//통신을 위한 스트림들
 	ObjectOutputStream out;
@@ -16,9 +16,9 @@ public class Ex3_CopyClient extends Thread {
 	
 	String ip, nickName;
 	
-	public Ex3_CopyClient(Socket s, Ex3_ChatServer ex3_ChatServer) {
+	public CopyClient(Socket s, ChatServer ChatServer) {
 		this.s = s;
-		this.server = ex3_ChatServer;
+		this.server = ChatServer;
 		
 		// in/out스트림들 생성, ip도 얻어내야 한다.
 		try {
@@ -40,23 +40,30 @@ public class Ex3_CopyClient extends Thread {
 				// 스트림으로부터 객체를 읽어낸다.
 				Object obj = in.readObject();//<<<<<<<<<<<<<<<<중요!!
 				if(obj != null) {
-					Ex3_Protocol protocol = (Ex3_Protocol) obj;
+					Protocol protocol = (Protocol) obj;
 					//protocol의 cmd값이 뭐냐에 따라 작업의 구분을 구현한다.
 					switch(protocol.getCmd()) {
-						case 3:
+						case 3:{
 							//원격의 클라이언트에 있는 스레드를 소멸시키기 위해 
 							//메세지 보내온 것이다.
-							out.writeObject(protocol);
+							server.removeClient(this);
+							Protocol p = new Protocol();
+							p.cmd = 1;
+							//명단수집
+							p.setUser_names(server.getNames());
+							server.sendProtocol(p);//접속자 모두에게 전달!
 							break bk;
+						}
 						case 1:
 							// 서버에 접속한 경우는
 							// 사용자가 입력한 대화명을 얻어내어 nickName에 저장한다.
 							this.nickName = protocol.getMsg();
 							
 							//환영메세지를 보내기 위해 Ex3_Protocol객체 생성
-							Ex3_Protocol p = new Ex3_Protocol();
-							p.cmd = 2;
-							p.msg = "*** "+nickName+"님 입장 ***";
+							Protocol p = new Protocol();
+							p.cmd = 1;
+							//명단수집
+							p.setUser_names(server.getNames());
 							server.sendProtocol(p);//접속자 모두에게 전달!
 							break;
 						case 2:
@@ -86,7 +93,7 @@ public class Ex3_CopyClient extends Thread {
 			server.removeClient(this);
 			
 			//서버에 다른 접속자들에게 현재객체가 접속해제하다는 메세지를 보낸다.
-			Ex3_Protocol p = new Ex3_Protocol();
+			Protocol p = new Protocol();
 			p.cmd = 2;
 			p.msg = "*** "+nickName+"님 퇴장 ***";
 			server.sendProtocol(p);
@@ -95,6 +102,8 @@ public class Ex3_CopyClient extends Thread {
 		}
 	}
 	
-	
+	public String getNickName() {
+		return nickName;                 
+	}
 
 }
