@@ -7,12 +7,7 @@ package pm;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -79,12 +74,11 @@ public class ChatFrame extends javax.swing.JFrame {
 						ta.append(p.getMsg());
 						card.show(getContentPane(), "ChatRoom");
 						break;
-//					case 5:
-//						System.out.println("클라이언트 5반응");
-//						user_list.setListData(p.getUser_names());
-//						room_list.setListData(p.getRoom_names());
-//						card.show(getContentPane(), "roomlist");
-//						break;
+					case 5:
+						card.show(getContentPane(), "roomlist");
+                        user_list.setListData(p.getUser_names());
+                        room_list.setListData(p.getRoom_names());
+						break;
 						
 					}
 					
@@ -268,7 +262,7 @@ public class ChatFrame extends javax.swing.JFrame {
 				}
 			}
 		});
-        room_list.addMouseListener(new MouseAdapter(){
+		room_list.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
                 int cnt = e.getClickCount();

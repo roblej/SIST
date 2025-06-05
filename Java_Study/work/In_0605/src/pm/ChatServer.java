@@ -60,6 +60,19 @@ public class ChatServer {
 		//대기실 모두에게 전달
 		sendProtocol(p);
 	}
+	public void addClient(CopyClient cc) {
+		u_list.add(cc);
+
+		//대기실 명단과 방 목록을 갱신하도록 프로토콜 작업
+		Protocol p = new Protocol();
+		p.setCmd(1);
+		p.setUser_names(getNames());
+		//방 목록 수집
+		p.setRoom_names(getRoomNames());
+
+		//대기실 모두에게 전달
+		sendProtocol(p);
+	}
 	
 	public void removeRoom(ChatRoom rr) {
 		if(rr.ru_list.size()<1)

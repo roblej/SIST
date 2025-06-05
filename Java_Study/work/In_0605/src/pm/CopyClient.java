@@ -88,10 +88,17 @@ public class CopyClient extends Thread {
 							break;
 						case 5:
 							//방나가기
-							server.u_list.add(this);
+							if(currentRoom != null){
+
 							currentRoom.getOut(this);
-							server.removeRoom(currentRoom);
-							currentRoom = null;
+							currentRoom=null;
+
+//							out.writeObject(protocol);
+							out.flush();
+
+
+//							server.removeRoom(currentRoom);
+							}
 
 							
 							break;
