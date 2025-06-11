@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	자동차 정보를 xml로 표현하자
+	(모델명,제조사,가격,...)
+
+ -->
+ 
+ <total>
+ 	<car>
+ 		<name>자동차1</name>
+ 		<company>현대</company>
+ 		<price>3000만</price>
+ 	</car>
+ </total>

@@ -12,6 +12,9 @@ select deptno,count(*) from emp group by deptno;
 select deptno,count(*),sum(sal) from emp group by deptno having count(*)>5;
 select deptno,sal from emp where deptno = 10;
 -- 7. 각 부서별 보너스의 합을 구하여 부서코드, 인원수, 보너스의 합 순으로 정보를 출력하는 SELECT 문장을 기술하시오! (단 NULL이 출력되어서는 안된다.)
+select deptno,count(*),sum(ifnull(comm,0)) from emp group by deptno;
 -- 8. deptno가 20인 부서의 도시명을 알아내는 SELECT 문장을 기술하시오.
+select d.deptno,l.city from (select * from dept where deptno=20) d, locations l where d.loc_code = l.loc_code;
 -- 9.각 사원들의 관리자(MGR)가 누구인지를 알아내어 사번, 이름, 관리자사번(MGR),관리자 명순으로 출력 하시오!
+
 -- 10. emp테이블에서 직종이 ‘ANALYST’인 사원들의 정보를사번, 이름, 직종, 급여, 부서명, 도시명 순으로 출력하시오
