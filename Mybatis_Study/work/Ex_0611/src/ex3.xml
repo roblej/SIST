@@ -7,8 +7,13 @@
  
  <total>
  	<car>
- 		<name>자동차1</name>
- 		<company>현대</company>
+ 		<model>자동차1</model>
+ 		<vender>현대</vender>
+ 		<price>3000만</price>
+ 	</car>
+ 	<car>
+ 		<model>자동차2</model>
+ 		<vender>기아</vender>
  		<price>3000만</price>
  	</car>
  </total>

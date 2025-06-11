@@ -1,1 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+	현재 문서는 친구들의 바상연락망을 만들어 보자
+ -->
+ 
+ <total>
+ 	<friend>
+ 		<name>이도</name>
+ 		<cellPhone>010-1234-1234</cellPhone>
+ 	</friend>
+ 	<friend>
+ 		<name>마루치</name>
+ 		<cellPhone>010-1234-1234</cellPhone>
+ 	</friend>
+ </total>
