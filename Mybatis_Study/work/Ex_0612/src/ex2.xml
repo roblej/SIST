@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE 이달의베스트셀러[
+   <!ELEMENT 이달의베스트셀러 (베스트셀러+)>
+   <!ELEMENT 베스트셀러 (제목, 저자+, 출판사, 가격, 이벤트?)>
+   <!ELEMENT 제목 (#PCDATA)>
+   <!ELEMENT 저자 (#PCDATA)>
+   <!ELEMENT 출판사 (#PCDATA)>
+   <!ELEMENT 가격 (#PCDATA)>
+   <!ELEMENT 이벤트 (#PCDATA)>
+   
+   <!-- 속성 설정법 -->
+   <!ATTLIST 베스트셀러 ISBN CDATA #REQUIRED>
+         <!-- #REQUIRED: 반드시 존재해야함 -->
+   <!ATTLIST 베스트셀러 표지 CDATA #FIXED "120">
+         <!-- #FIXED : 반드시 그 값이거나 사용안함 -->
+   <!ATTLIST 베스트셀러 size CDATA #IMPLIED>
+         <!-- #IMPLIED: ? -->

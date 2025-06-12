@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Computer [ <!--computer : 루트태그 -->
+	<!ELEMENT Computer (CPU,VGA?,RAM*,SSD+)>
+	<!-- 
+	+ : 1개 이상 생략 불가능
+	? : 있을수도있고 없을수도있다. 단,있을땐 1개 
+	* : 다 가능
+	-->
+	<!ELEMENT CPU (#PCDATA)>
+	<!ELEMENT VGA (#PCDATA)>
+	<!ELEMENT RAM (#PCDATA)>
+	<!ELEMENT SSD (#PCDATA)>
+]>
+
+<Computer>
+	<CPU>5900x</CPU>
+	<VGA>rtx3070</VGA>
+	<RAM>32gb</RAM>
+	<SSD>2T</SSD>
+</Computer>
