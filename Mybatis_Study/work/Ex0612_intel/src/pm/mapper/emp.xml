@@ -16,14 +16,19 @@
     </select>
     <select id="search_empno" resultType="pm.vo.EmpVO" parameterType="String">
         select * from emp
-        where empno like concat('%',#{n},'%')
+        where empno = #{no}
     </select>
     <select id="search_job" resultType="pm.vo.EmpVO" parameterType="String">
         select * from emp
         where job like concat('%',#{n},'%')
     </select>
     <select id="search_deptno" resultType="pm.vo.EmpVO" parameterType="String">
+    <!--<select id="search_deptno" resultType="pm.vo.EmpVO" parameterType="String">
+    parameterType이 String이나 int로 되어있으면 {n}처럼 변수명은 아무거나 가능
+    하지만 parameterType이 여러개라면 매개변수명과 같아야 한다.
+    ex) parameterType : EmpVO 일때 변수명은 empVO.deptno 처럼 그 안에 있어야함
+    -->
         select * from emp
-        where deptno like concat('%',#{n},'%')
+        where deptno = #{n}
     </select>
 </mapper>

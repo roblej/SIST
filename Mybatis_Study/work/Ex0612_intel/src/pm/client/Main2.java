@@ -15,6 +15,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main2 extends JFrame {
@@ -72,7 +73,7 @@ public class Main2 extends JFrame {
                             "검색할 이름을 입력해주세요");
                 }else {
                     // DB에서 검색
-                    search(n,"emp.search_name");
+                    search("emp.search_name",n);
 
                 }
             }
@@ -80,30 +81,64 @@ public class Main2 extends JFrame {
         it_empno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String ans = JOptionPane.showInputDialog("사번을 입력하세요.");
-                search(ans,"emp.search_empno");
+                //사번검색
+                String ans = JOptionPane.showInputDialog(Main2.this,"사번을 입력하세요.");
+                if(ans==null || ans.trim().length()<1){
+                    JOptionPane.showMessageDialog(Main2.this,"사번을 입력해주세요.");
+                    return;
+                }else {
+                    searchEmpno(ans);
+//                    search("emp.search_empno",ans);
+                }
             }
         });
         it_job.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String ans = JOptionPane.showInputDialog("직종을 입력하세요.");
-                search(ans,"emp.search_job");
+                //직종검색
+                String ans = JOptionPane.showInputDialog(Main2.this,"직종을 입력하세요.");
+                if(ans==null || ans.trim().length()<1){
+                    JOptionPane.showMessageDialog(Main2.this,"직종을 입력해주세요.");
+                    return;
+                }else
+                    search("emp.search_job",ans);
             }
         });
         it_deptno.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String ans = JOptionPane.showInputDialog("부서코드를 입력하세요.");
-                search(ans,"emp.search_deptno");
+                //부서검색
+                String ans = JOptionPane.showInputDialog(Main2.this,"부서코드를 입력하세요.");
+                if(ans==null || ans.trim().length()<1){
+                    JOptionPane.showMessageDialog(Main2.this,"부서코드를 입력해주세요.");
+                    return;
+                }else
+                    search("emp.search_deptno",ans);
             }
         });
     }
+    private void searchEmpno(String n){
+        //SQL문 활용하기 위해 factory를 통해 SqlSession을 얻어낸다.
+        SqlSession ss = factory.openSession();
+        //검색할 값이 기본키이므로 검색에 성공할 경우 결과는 1개다.
+        //그래서 결과를 1개만 반환하는 함수를 호출했다.
+        EmpVO vo = ss.selectOne("emp.search_empno",n);
+        List<EmpVO> list = new ArrayList<>();
+        list.add(vo); //검색결과가 1개이므로 list에 추가한다.
+        viewTable(list);  //테이블에 보여주기
 
-    private void search(String n, String tag){
+
+        ss.close();
+    }
+    private void search(String tag, String n){
         //SQL문장을 통해 n을 전달하여 결과를 얻어내야 한다.
         SqlSession ss = factory.openSession();
         List<EmpVO> list = ss.selectList(tag,n);
+        viewTable(list);
+
+        ss.close();
+    }
+    private void viewTable(List<EmpVO> list) {
         if(list!=null && list.size()>0){ //DB로부터 받은 데이터가 있을때만
             //받은 list를 JTable에 표현하기 위해 2차원 배열로 만들기
             data = new String[list.size()][c_name.length];
@@ -115,14 +150,11 @@ public class Main2 extends JFrame {
                 data[i][3] = vo.getDeptno();
                 i++;
             }
-
             table.setModel(new DefaultTableModel(data,c_name));
 
         }
 
-        ss.close();
-    }
-
+        }
     private void init()  {
 
         try {
