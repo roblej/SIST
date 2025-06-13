@@ -111,6 +111,7 @@ public class FarmeEx1 extends JFrame{
             throw new RuntimeException(e);
         }
     }
+    //주석
     public static void main(String[] args) {
         new FarmeEx1();
     }
