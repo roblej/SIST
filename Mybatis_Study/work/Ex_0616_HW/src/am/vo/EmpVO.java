@@ -1,4 +1,4 @@
-package pm.VO;
+package am.vo;
 
 public class EmpVO {
     String empno;

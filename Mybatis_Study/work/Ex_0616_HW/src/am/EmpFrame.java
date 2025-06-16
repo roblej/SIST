@@ -1,4 +1,4 @@
-package pm.client;
+package am;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FarmeEx1 extends JFrame{
+public class EmpFrame extends JFrame{
 
     JPanel north_p;
     JLabel start_label,end_label;
@@ -28,7 +28,7 @@ public class FarmeEx1 extends JFrame{
     String start,end;
     List<EmpVO> list;
     int clicked_idx;
-    public FarmeEx1() {
+    public EmpFrame() {
         north_p = new JPanel();
         start_label = new JLabel("시작일");
         end_label = new JLabel("종료일");
@@ -86,7 +86,7 @@ public class FarmeEx1 extends JFrame{
                     clicked_idx = table.getSelectedRow();
                     //위의 i는 list의 접근하기위한 index이다.
                     EmpVO vo = list.get(clicked_idx);
-                    MyDialog md = new MyDialog(FarmeEx1.this, true , vo);
+                    MyDialog md = new MyDialog(EmpFrame.this, true , vo);
                 }
             }
         });
@@ -103,7 +103,7 @@ public class FarmeEx1 extends JFrame{
             list = ss.selectList("emp.select", params);
             viewTable(list);
         }else
-            JOptionPane.showMessageDialog(FarmeEx1.this,"날짜를 모두 입력하세요");
+            JOptionPane.showMessageDialog(EmpFrame.this,"날짜를 모두 입력하세요");
         ss.close();
     }
     private void viewTable(List<EmpVO> list){
@@ -134,7 +134,7 @@ public class FarmeEx1 extends JFrame{
     }
     //주석
     public static void main(String[] args) {
-        new FarmeEx1();
+        new EmpFrame();
     }
 
     public void updateData(EmpVO vo) {

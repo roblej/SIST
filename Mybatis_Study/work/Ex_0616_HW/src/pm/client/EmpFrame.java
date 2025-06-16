@@ -4,6 +4,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import pm.VO.DeptVO;
 import pm.VO.EmpVO;
 
 import javax.swing.*;
@@ -11,11 +12,12 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FarmeEx1 extends JFrame{
+public class EmpFrame extends JFrame{
 
     JPanel north_p;
     JLabel start_label,end_label;
@@ -27,25 +29,29 @@ public class FarmeEx1 extends JFrame{
     SqlSessionFactory factory;
     String start,end;
     List<EmpVO> list;
+    List<DeptVO> depts;
     int clicked_idx;
-    public FarmeEx1() {
+    JCheckBox[] chk_ar;
+
+
+    public EmpFrame() {
+
         north_p = new JPanel();
-        start_label = new JLabel("시작일");
-        end_label = new JLabel("종료일");
-        start_jt = new JTextField(10);
-        end_jt = new JTextField(10);
+        start_label = new JLabel("부서검색 : ");
+        start_jt = new JTextField(5);
+
         btn = new JButton("조회");
         north_p.add(start_label);
-        north_p.add(start_jt);
-        north_p.add(end_label);
-        north_p.add(end_jt);
+//        north_p.add(start_jt);\
+        init();
+
         north_p.add(btn);
         this.add(north_p,"North");
 
         this.add(new JScrollPane(table = new JTable()));
         table.setModel(new DefaultTableModel(data, c_name));
 
-        this.setBounds(300,300,500,400);
+        this.setBounds(300,300,600,400);
         this.setVisible(true);
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -54,25 +60,36 @@ public class FarmeEx1 extends JFrame{
             }
         });
 
-        init();
+
+
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                start = start_jt.getText().trim();
-                end = end_jt.getText().trim();
-                search(start, end);
-            }
-        });
-        start_jt.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btn.doClick();
-            }
-        });
-        end_jt.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                btn.doClick();
+                ArrayList<String> dept_list = new ArrayList<>();  // 부서번호를 담을 ArrayList
+                for (JCheckBox box : chk_ar) {  // 체크박스 배열에서
+                    if (box.isSelected()) { // 체크박스가 선택되었으면
+                            String str = box.getText();
+
+                        //str을 depts라는 List에서 DeptVO를 대상으로 찾아낸다.
+                        //부서코드를 dept_list에 추가한다.
+                        for (DeptVO dvo : depts) { // 부서목록에서
+                            if (dvo.getDname().equalsIgnoreCase(str)) {
+                                //선택된 체크박스의 부서번호를 알아내자
+                                dept_list.add(dvo.getDeptno()); // 부서번호를 ArrayList에 추가
+                                break; // 해당 부서번호를 찾았으면 반복문을 빠져나온다.
+                            }
+                        }//for의 끝
+                    }
+                }//for의 끝
+//                System.out.println(dept_list);
+                Map<String,ArrayList<String>> map = new HashMap<>();
+                map.put("dept_list", dept_list); // 부서번호 리스트를 맵에 추가
+
+                SqlSession ss = factory.openSession();
+                list = ss.selectList("emp.search_deptno", map);
+                viewTable(list);
+                ss.close();
+
             }
         });
 
@@ -86,7 +103,7 @@ public class FarmeEx1 extends JFrame{
                     clicked_idx = table.getSelectedRow();
                     //위의 i는 list의 접근하기위한 index이다.
                     EmpVO vo = list.get(clicked_idx);
-                    MyDialog md = new MyDialog(FarmeEx1.this, true , vo);
+                    MyDialog md = new MyDialog(EmpFrame.this, true , vo);
                 }
             }
         });
@@ -103,7 +120,7 @@ public class FarmeEx1 extends JFrame{
             list = ss.selectList("emp.select", params);
             viewTable(list);
         }else
-            JOptionPane.showMessageDialog(FarmeEx1.this,"날짜를 모두 입력하세요");
+            JOptionPane.showMessageDialog(EmpFrame.this,"날짜를 모두 입력하세요");
         ss.close();
     }
     private void viewTable(List<EmpVO> list){
@@ -131,10 +148,25 @@ public class FarmeEx1 extends JFrame{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+            allData();
     }
-    //주석
-    public static void main(String[] args) {
-        new FarmeEx1();
+    private void allData(){
+        SqlSession ss = factory.openSession();
+        depts = ss.selectList("emp.dept_all");
+        viewDept();
+        ss.close();
+    }
+
+    private void viewDept() {
+        // 멤버변수인 depts의 길이만큼 chk_ar이라는 배열을 생성한다.
+        chk_ar = new JCheckBox[depts.size()];
+        //아직 jCheckBox가 만들어지진 않았다.
+        int i=0;
+        for(DeptVO dvo : depts){
+            chk_ar[i] = new JCheckBox(dvo.getDname());
+            north_p.add(chk_ar[i]);
+            i++;
+        }
     }
 
     public void updateData(EmpVO vo) {
@@ -155,5 +187,9 @@ public class FarmeEx1 extends JFrame{
         }else
             ss.rollback();
         ss.close();
+    }
+
+    public static void main(String[] args) {
+        new EmpFrame();
     }
 }
