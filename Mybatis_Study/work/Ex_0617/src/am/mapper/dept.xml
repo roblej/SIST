@@ -7,5 +7,16 @@
         select * from dept
         where deptno = #{key}
     </select>
+    <resultMap id="res1" type="am.vo.DeptVO">
+        <id column="deptno" property="deptno"/>
+        <!-- id는 기본키의 속성을 지정할 때 사용한다. property="deptno"는
+             type에 지정된 DeptVO의 멤버변수(속성) 중 deptno라는 변수가 기본키이며
+             column="deptno"라는 것은 deptno라는 컬럼의 값을 deptno 변수에 저장하라는 뜻-->
+        <collection property="list" ofType="am.vo.EmpVO" select="emp.search_Dept" column="deptno"/>
+    </resultMap>
+    <!-- 하나의 부서가 여러개의 사원들 정보를 수집하는 예문 -->
+    <select id="all" resultMap="res1">
+        select * from dept
+    </select>
 </mapper>
 

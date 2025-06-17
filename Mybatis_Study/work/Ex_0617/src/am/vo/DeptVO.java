@@ -1,7 +1,18 @@
 package am.vo;
 
+import java.util.List;
+
 public class DeptVO {
     private String deptno, dname, loc_code;
+    private List<EmpVO> list;
+
+    public List<EmpVO> getList() {
+        return list;
+    }
+
+    public void setList(List<EmpVO> list) {
+        this.list = list;
+    }
 
     public String getDeptno() {
         return deptno;
