@@ -13,6 +13,8 @@
              type에 지정된 DeptVO의 멤버변수(속성) 중 deptno라는 변수가 기본키이며
              column="deptno"라는 것은 deptno라는 컬럼의 값을 deptno 변수에 저장하라는 뜻-->
         <collection property="list" ofType="am.vo.EmpVO" select="emp.search_Dept" column="deptno"/>
+        <!-- id 작성안하면 collection에서 column="deptno"를 사용해서 DeptVO의 deptno속성에 들어가지 않는다.
+        왜 이렇게 한거지? 수정하고싶다. -->
     </resultMap>
     <!-- 하나의 부서가 여러개의 사원들 정보를 수집하는 예문 -->
     <select id="all" resultMap="res1">
