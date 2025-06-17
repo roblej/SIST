@@ -128,14 +128,14 @@ public class EmpFrame extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MyDialog(EmpFrame.this,true,null);
+                new MyDialog(EmpFrame.this,true,"추가");
             }
         });
         search_item.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MyDialog(EmpFrame.this,true,null);
+                new MyDialog(EmpFrame.this,true,"검색");
             }
         });
 
@@ -219,7 +219,13 @@ public class EmpFrame extends JFrame{
             ss.rollback();
         ss.close();
     }
+    public void search(EmpVO vo) {
+        SqlSession ss = factory.openSession();
+        list = ss.selectList("emp.search", vo);
+        viewTable(list);
 
+        ss.close();
+    }
     public static void main(String[] args) {
         new EmpFrame();
     }

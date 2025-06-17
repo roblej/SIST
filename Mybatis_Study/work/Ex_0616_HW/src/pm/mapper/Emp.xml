@@ -17,4 +17,30 @@
         #{dept_no}
     </foreach>
     </select>
+    <select id="search" resultType="pm.VO.EmpVO" parameterType="pm.VO.EmpVO">
+        select e.empno, e.ename, e.hiredate, e.sal, d.dname
+        From emp e INNER JOIN dept d ON e.deptno = d.deptno
+        <trim prefix="WHERE" suffixOverrides="and">
+            <if test="empno != null">
+                e.empno = #{empno} and
+            </if>
+            <if test="ename != null">
+                e.ename = #{ename} and
+            </if>
+            <if test="job != null">
+                e.job LIKE CONCAT{'%',#{job},'%') and
+            </if>
+            <if test="hiredate != null">
+                e.hiredate LIKE CONCAT{'%',#{hiredate},'%') and
+            </if>
+            <if test="sal != null">
+                e.sal LIKE CONCAT{'%',#{sal},'%') and
+            </if>
+<!--            <if test="depnto != null">-->
+<!--                e.depnto LIKE CONCAT{'%',#{depnto},'%') and-->
+<!--            </if>-->
+
+
+        </trim>
+    </select>
 </mapper>

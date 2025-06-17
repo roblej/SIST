@@ -30,14 +30,35 @@ public class MyDialog extends javax.swing.JDialog {
         initComponents();
         jButton1.setText(str);
         empno_tf.setEditable(true);
-
+        dname_tf.setEditable(true);
         jButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //추가모드에서 클릭했는지? 아니면 검색모드에서 클릭했는지?
                 String msg = e.getActionCommand();
                 System.out.println(msg);
-                if(msg.equals())
+                if(msg.equals("검색")){
+                    //사용자가 입력한 값이 무엇인지 모르기 때문에 모두 가져옴
+                    String empno = empno_tf.getText().trim();
+                    String ename = ename_tf.getText().trim();
+                    String job =  job_tf.getText().trim();
+                    String hiredate =  hiredate_tf.getText().trim();
+                    String sal = sal_tf.getText().trim();
+
+                    EmpVO vo = new EmpVO();
+                    if(empno.length() > 0)
+                        vo.setEmpno(empno);
+                    if(ename.length() > 0)
+                        vo.setEname(ename);
+                    if(job.length() > 0)
+                        vo.setJob(job);
+                    if(hiredate.length() > 0)
+                        vo.setHiredate(hiredate);
+                    if(sal.length() > 0)
+                        vo.setSal(sal);
+
+                    parent.search(vo);
+                }
             }
         });
         setVisible(true);
