@@ -22,6 +22,27 @@ public class MyDialog extends javax.swing.JDialog {
     /**
      * Creates new form MyDialog
      */
+    public MyDialog(EmpFrame parent, boolean modal,String str) {
+        super(parent, modal);
+        this.parent = parent;
+        this.setTitle(str);
+
+        initComponents();
+        jButton1.setText(str);
+        empno_tf.setEditable(true);
+
+        jButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //추가모드에서 클릭했는지? 아니면 검색모드에서 클릭했는지?
+                String msg = e.getActionCommand();
+                System.out.println(msg);
+                if(msg.equals())
+            }
+        });
+        setVisible(true);
+    }
+
     public MyDialog(EmpFrame parent, boolean modal, EmpVO vo) {
         super(parent, modal);
         this.parent = parent;

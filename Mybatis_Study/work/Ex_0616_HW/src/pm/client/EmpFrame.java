@@ -33,6 +33,9 @@ public class EmpFrame extends JFrame{
     int clicked_idx;
     JCheckBox[] chk_ar;
 
+    JMenuBar bar;
+    JMenu file_M;
+    JMenuItem add_item, search_item, exit_item;
 
     public EmpFrame() {
 
@@ -44,6 +47,19 @@ public class EmpFrame extends JFrame{
         north_p.add(start_label);
 //        north_p.add(start_jt);\
         init();
+
+        bar = new JMenuBar();
+        file_M = new JMenu("파일");
+        add_item = new JMenuItem("추가");
+        search_item = new JMenuItem("검색");
+        exit_item = new JMenuItem("종료");
+
+        file_M.add(add_item);
+        file_M.add(search_item);
+        file_M.addSeparator();
+        file_M.add(exit_item);
+        bar.add(file_M);
+        this.setJMenuBar(bar);
 
         north_p.add(btn);
         this.add(north_p,"North");
@@ -105,6 +121,21 @@ public class EmpFrame extends JFrame{
                     EmpVO vo = list.get(clicked_idx);
                     MyDialog md = new MyDialog(EmpFrame.this, true , vo);
                 }
+            }
+        });
+
+        add_item.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MyDialog(EmpFrame.this,true,null);
+            }
+        });
+        search_item.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MyDialog(EmpFrame.this,true,null);
             }
         });
 
