@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    table{
+      /* CSS 주석
+      현재문서에서 table이라는 태그를 만났을 때 다음의 내용을 적용시킨다.*/
+      width: 400px;
+      border: 1px solid black;
+      border-collapse: collapse;
+      /*border-radius: 5px;*/
+    }
+    thead>tr>th{
+      background: #cccccc;
+    }
+    #t1 td,#t1 th{
+      border: 1px solid green;
+    }
+    #t2 td,#t2 th{
+     border: 1px solid red;
+      }
+  </style>
+</head>
+<body>
+<article>
+  <header>
+    <h2>테이블 연습</h2>
+  </header>
+  <div>
+    <table id="t1">
+          <caption>사원테이블</caption>
+      <thead>
+      <tr>
+        <th>사번</th>
+        <th>이름</th>
+        <th>직종</th>
+        <th>이메일</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>1000</td>
+        <td>이도</td>
+        <td>개발자</td>
+        <td>lee@naver.com</td>
+      </tr>
+      <tr>
+        <td>2000</td>
+        <td>홍길동</td>
+        <td>개발자</td>
+        <td>lee@naver.com</td>
+      </tr>
+      <tr>
+        <td>3000</td>
+        <td>을불</td>
+        <td>개발자</td>
+        <td>lee@naver.com</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="4">자료제공 : SiST 인사과</td>
+      </tr>
+      </tfoot>
+    </table>
+<br/>
+    <table id="t2">
+          <caption>사원테이블</caption>
+      <thead>
+      <tr>
+        <th>사번</th>
+        <th>이름</th>
+        <th>직종</th>
+        <th>이메일</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>1000</td>
+        <td>이도</td>
+        <td>개발자</td>
+        <td>lee@naver.com</td>
+      </tr>
+      <tr>
+        <td>2000</td>
+        <td>홍길동</td>
+        <td>개발자</td>
+        <td>lee@naver.com</td>
+      </tr>
+      <tr>
+        <td>3000</td>
+        <td>을불</td>
+        <td>개발자</td>
+        <td>lee@naver.com</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="4">자료제공 : SiST 인사과</td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+</article>
+</body>
+</html>

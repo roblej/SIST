@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  table{
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+  td{
+    text-align: center;
+  }
+  #t1{
+    border: none;
+  }
+  #t2{
+    width: 300px;
+  }
+  #t2 td{
+    border: 1px solid black;
+  }
+  table>caption{
+    /*display: none;*/
+    text-indent: -9999px;
+  }
+  .txtCenter{
+    text-align: center;
+  }
+</style>
+<body>
+<article>
+  <table id="t1">
+    <caption>이미지  테이블</caption>
+    <thead>
+    <h2>문제1</h2>
+    </thead>
+    <tbody>
+    <tr>
+      <td><img src="../img/KakaoTalk_Photo_2025-07-01-15-28-31%20001.jpeg"></td>
+      <td>고요함</td>
+      <td><img src="../img/KakaoTalk_Photo_2025-07-01-15-28-31%20002.jpeg"></td>
+    </tr>
+    <tr>
+      <td>외침 속</td>
+      <td><img src="../img/KakaoTalk_Photo_2025-07-01-15-28-31%20003.jpeg"></td>
+      <td>항해</td>
+    </tr>
+    <tr>
+      <td><img src="../img/KakaoTalk_Photo_2025-07-01-15-28-31%20004.jpeg"></td>
+      <td>고요함</td>
+      <td><img src="../img/KakaoTalk_Photo_2025-07-01-15-28-31%20005.jpeg"></td>
+    </tr>
+    </tbody>
+  </table>
+  <table id = "t2">
+    <caption>테이블 병합</caption>
+<!--    각 컬럼별 너비를 지정할 수 있다-->
+    <colgroup>
+      <col width="100px"/>
+      <col width="150px"/>
+      <col width="100px"/>
+    </colgroup>
+    <thead>
+    <h2>문제 2</h2>
+    </thead>
+    <tbody>
+    <tr>
+      <td rowspan="3">사진</td>
+      <td colspan="2">테이블입니다.</td>
+    </tr>
+    <tr>
+      <td>데이터</td>
+      <td>데이터</td>
+    </tr>
+    <tr>
+      <td>데이터</td>
+      <td>데이터</td>
+    </tr>
+    <tr>
+      <td>데이터</td>
+      <td>데이터</td>
+      <td>데이터</td>
+    </tr>
+    <tr>
+      <td>데이터</td>
+      <td colspan="2" rowspan="3"></td>
+    </tr>
+    <tr>
+      <td>데이터</td>
+    </tr>
+    <tr>
+      <td>데이터</td>
+    </tr>
+    </tbody>
+  </table>
+</article>
+</body>
+</html>
