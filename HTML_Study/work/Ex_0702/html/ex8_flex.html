@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  article>div{
+    font-size: 0;
+    display: flex;
+  }
+  article>div>div{
+    display: inline-block;/*크기설정 가능, 행 배치 가능*/
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+  }
+  div.box{
+    /*border-color: red;*/
+    background-image: url("../img/cap.PNG");
+    background-repeat: no-repeat;
+    background-position:center;
+    /*background-size: contain;*/
+  }
+</style>
+<body>
+<article>
+  <header><h2>박스개념</h2></header>
+  <div>
+    <div id="box1" class="box">BOX1</div>
+    <div id="box2">BOX2</div>
+    <div id="box3" class="box">BOX3</div>
+    <div id="box4">BOX4</div>
+  </div>
+</article>
+</body>
+</html>
