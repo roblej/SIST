@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  #menu {
+    display: flex;
+    /*flex-direction: column;*/
+    list-style: none;
+    width: 70%;
+
+    padding: 0;
+    margin: auto;
+    border: 1px solid red;
+  }
+
+  #menu>li{
+    height: 50px;
+    background-color: dodgerblue;
+    border: 1px solid black;
+  }
+
+  .item{
+    /*flex-grow: 1; !*남은 공간에서 차지할 영역*!*/
+    /*!*1아니면 0으로 구분 1이면 1인분씩 나눠가짐. 즉 균등분할*!*/
+    /*flex-shrink: 1; !*축소될때 얼마나 축소될지 결정*!*/
+    /*flex-basis: auto;*/
+
+    flex: 1 1 0;
+  }
+</style>
+<body>
+<article>
+  <header>
+    <h2>플렉스 박스 개념</h2>
+  </header>
+  <div>
+    <ul id="menu">
+      <li class="item">메뉴1</li>
+      <li class="item">메뉴2</li>
+      <li class="item">메뉴3</li>
+      <li class="item">메뉴4</li>
+    </ul>
+  </div>
+</article>
+</body>
+</html>

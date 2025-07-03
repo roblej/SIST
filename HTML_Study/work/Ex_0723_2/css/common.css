@@ -1,0 +1,124 @@
+@charset "UTF-8";
+@import "reset.css";
+
+#wrap {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+/* 상단영역 */
+#header {
+  width: 970px;
+  height: 120px;
+  margin: auto;
+  position: relative;
+  border: 1px solid red;
+}
+
+/*header 안에 있는 h1 태그 너비를 181px로 하고 높이를 59px로, bg-img는 logo.png 문자열은 안보이게*/
+#header > h1 {
+  width: 181px;
+  height: 59px;
+  background: url("../img/logo.png") no-repeat;
+  text-indent: -9999px;
+}
+
+#header > .gnb {
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+}
+
+#header .gnb > li {
+  flex: 1 1 194px;
+  height: 100%;
+  background-color: orangered;
+}
+
+#header .gnb > li > a {
+  display: block;
+  width: auto;
+  height: 100%;
+  text-align: center;
+}
+
+#header .gnb > li > a > span.menu {
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  color: white;
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 16px;
+  background: url("../img/gnb_bult.png") no-repeat;
+  padding-left: 30px;
+}
+
+/*각 메뉴들의 아이콘 변경*/
+#header .gnb > li > a > span.m01 {
+  background-position-y: 0;
+}
+
+#header .gnb > li > a > span.m02 {
+  background-position-y: -22px;
+}
+
+#header .gnb > li > a > span.m03 {
+  background-position-y: -44px;
+}
+
+#header .gnb > li > a > span.m04 {
+  background-position-y: -66px;
+}
+
+#header .gnb > li > a > span.m05 {
+  background-position-y: -88px;
+}
+/*콘텐츠영역*/
+/*푸터영역*/
+#footer{
+  width: auto;
+  /* 안쪽여백 좌/우 0px 위쪽은 40px 아래쪽은 50px로 지정 */
+  padding: 40px 0 50px;/*위 좌우 아래*/
+  background: #eee;
+  margin-top: 50px;
+}
+
+#footer>#footer_area{
+  width: 900px;
+  margin: auto;
+}
+#footer .footer_guide{
+  padding-bottom: 20px;
+  overflow: hidden;
+}
+#footer .footer_guide>li{
+  display: inline-block;
+  padding: 0 10px;
+  border-right: 1px solid #999;
+}
+#footer .footer_guide>li:last-child{
+  border-right: none;
+}
+#footer .footer_guide>li>a{
+  color:#777;
+  font-size: 12px;
+  font-weight: bold;
+}
+#footer .footer_guide>li>a:hover{
+  color : orangered;
+}
+
+#footer address{
+  font-size: 12px;
+  color: #777;
+  padding-bottom: 6px;
+}
+#footer .copyright{
+  font-size: 11px;
+}
+

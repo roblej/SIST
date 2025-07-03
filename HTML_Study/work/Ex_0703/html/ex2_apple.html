@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  #menu {
+    width: 982px;
+    height: 38px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-image: url("../img/apple_menu.gif");
+    background-repeat: no-repeat;
+  }
+
+  #menu > li {
+    width: 136px;
+    height: 38px;
+    margin: 0;
+    padding: 0;
+
+  }
+  #menu > li > a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    /*border: 1px solid red;*/
+    text-indent: -9999px;
+    background: url("../img/apple_menu.gif") no-repeat;
+  }
+  #menu>li#apple>a{
+    background-position-x: 0;
+  }
+  #menu>li#store>a{
+    background-position-x: -136px;
+  }
+  #menu>li#mac>a{
+    background-position-x: -272px;
+  }
+  #menu>li#iPod>a{
+    background-position-x: -408px;
+  }
+  #menu>li#download>a{
+    background-position-x: -544px;
+  }
+  #menu>li#service>a{
+     background-position-x: -680px;
+   }
+
+  #menu>li>a:hover{
+    background-position-y: -38px;
+  }
+
+  #menu>li>a:active{
+    background-position-y: -76px;
+  }
+</style>
+<body>
+<article>
+  <header id="header">
+    <ul id="menu">
+      <li id="apple"><a href="">apple</a></li>
+      <li id="store"><a href="">store</a></li>
+      <li id="mac"><a href="">mac</a></li>
+      <li id="iPod"><a href="">iPod</a></li>
+      <li id="download"><a href="">download</a></li>
+      <li id="service"><a href="">service</a></li>
+    </ul>
+  </header>
+</article>
+</body>
+</html>
