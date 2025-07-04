@@ -1,4 +1,4 @@
-#contents{
+#contents {
   width: 970px;
   height: auto;
   margin: auto;
@@ -8,26 +8,31 @@
   width: 100%;
   height: 360px;
 }
-.main_news{
+
+.main_news {
   width: 100%;
   height: 250px;
   background-color: whitesmoke;
   margin: auto;
   display: flex;
 }
-.main_news .title>span{
+
+.main_news .title > span {
   margin-bottom: 5px;
   font-weight: bold;
   font-size: 15px;
 }
-.main_news .title>span.red{
+
+.main_news .title > span.red {
   color: red;
 }
-.main_news> .news_type01{
+
+.main_news > .news_type01 {
   width: 245px;
   margin: 25px auto;
 }
-.main_news> .news_type01>.news_src>.subject{
+
+.main_news > .news_type01 > .news_src > .subject {
   display: inline-block;
   width: 100%;
   overflow: hidden;
@@ -35,15 +40,137 @@
   text-overflow: ellipsis;
   word-break: break-all;
 }
-.main_news> .news_type01>div{
+
+.main_news > .news_type01 > div {
   position: relative;
   margin-top: 5px;
 }
-.main_news> .news_type01>div>.writer{
+
+.main_news > .news_type01 > div > .writer {
   font-size: 11px;
 }
-.main_news> .news_type01>div>.more_view{
+
+.main_news > .news_type01 > div > .more_view {
   font-size: 11px;
   position: absolute;
   right: 0;
+}
+.main_board .board_type01 .notice{
+
+}
+.ellip{
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all
+}
+.main_board{
+  display: flex;
+  width: 970px;
+  margin: auto;
+  margin-top: 50px;
+}
+.main_board .board_type01{
+  position: relative; /* 우측으로 붙일때 필요함 */
+  height: 250px;
+  overflow: hidden;
+  margin-left: 50px;
+  /*border: 1px solid red;*/
+  display: inline-block;
+}
+.main_board .board_type01:nth-child(1){
+  margin-left: 0px;
+}
+.main_board .board_type01:nth-child(3){
+  /*margin-top: 20px;*/
+  width: 290px;
+}
+.main_board .board_type01:nth-child(1) .title{
+  background-position: 0 -60px;
+}
+.main_board .board_type01:nth-child(2) .title{
+  background-position: 0 -80px;
+}
+/*더보기를 우측으로 붙이기*/
+.main_board .board_type01 .more_view{
+  position: absolute;
+  right: 0;
+  top: 3px;
+  padding-right: 10px;
+  background: url("../img/bult.png") no-repeat 35px -59.5px;
+}
+
+.main_board .board_type01 .notice li{
+  position: relative;
+  height: 23px;
+  line-height: 23px;
+  padding-right: 75px; /* 날짜가 들어갈 공간 확보 */
+}
+.main_board .board_type01 .notice li a{
+  display: inline-block;
+  width: 100%; /* 부모 요소의 너비에 맞춤 */
+  overflow: hidden;
+  font-size: 12px;
+}
+.main_board .board_type01 .notice li .date{
+  font-size: 11px;
+  position: absolute;
+  right: 0px;
+  top: 3px;
+}
+.main_board .fc{
+  width: 210px;
+}
+.art{
+  display: block;
+  overflow: hidden;
+
+}
+.art .thum_img{
+  display: inline-block;
+  width: 65px;
+  height: 65px;
+}
+article.art .src{
+  display: inline-block;
+  width: 130px;
+  margin-left: 5px;
+  /*color: red;*/
+}
+/*배너작업*/
+.main_board .board_type01 .banner{
+  display: inline-block;
+  width: 137px;
+  height: 118px;
+  border: 1px solid #dedede;
+  background: url("../img/main_banner.png") no-repeat;
+  text-indent: -99999px;
+  border-radius: 10px;
+}
+.main_board .board_type01 .banner a{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.main_board .board_type01 .b01{
+  background-position-x: -137px;
+}
+.news_type01 .thum_img{
+  position: relative;
+}
+#btn_play{
+  display: inline-block;
+  width: 52px;
+  height: 51px;
+  background: url("../img/icon_play.png") no-repeat;
+  position: absolute;
+  top: -90px;
+  right: -150px;
+}
+#btn_play a{
+  display: block;
+  width: 100%;
+  height: 100%;
 }

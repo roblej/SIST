@@ -1,0 +1,125 @@
+@charset "UTF-8";
+
+#contents {
+  width: 900px;
+  height: auto;
+  margin: 20px auto auto;
+}
+
+.login_area {
+  background: url("../img/login_bg.png") no-repeat;
+  width: 100%;
+  height: 1000px;
+  display: flex;
+  margin: 50px auto auto auto;
+}
+
+.sub_title {
+  background: url("../img/sub_title.png") no-repeat;
+  text-indent: -9999px;
+}
+
+.tit02 {
+  height: 30px;
+  background-position-y: -50px;
+}
+
+.tit03 {
+  height: 79px;
+  width: 300px;
+  background-position-y: -79px;
+}
+
+.tit04 {
+  height: 79px;
+  width: 300px;
+  background-position-y: -159px;
+}
+
+.login_area .person_login, .group_login {
+  margin: 20px auto auto auto;
+}
+
+.person_login .btn_area, .group_login .btn_area {
+  position: relative;
+}
+
+.b_login {
+  background: url("../img/btn.png") no-repeat;
+  width: 90px;
+  height: 60px;
+  position: absolute;
+  right: 5px;
+  top: -57px;
+}
+
+.b_login a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.input_area {
+  justify-items: right;
+  padding-top: 20px;
+  padding-right: 100px;
+
+}
+
+.input_area p {
+  margin: 5px;
+  position: relative;
+}
+
+.input_area p > label {
+  background: url("../img/bult.png") no-repeat;
+  background-position-y: -77px;
+  padding-left: 10px;
+  position: absolute;
+  left: -65px;
+  top: 6px;
+}
+
+.input_area p input {
+  width: 110px;
+  height: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+
+}
+
+.login_search {
+  margin-left: 20px;
+  margin-top: 20px;
+  position: relative;
+
+}
+
+.login_search > input {
+  margin-top: 6px;
+}
+
+.b_search {
+  width: 160px;
+  height: 30px;
+  background: url("../img/btn.png") no-repeat;
+  background-position-x: right;
+  position: absolute;
+  right: -3px;
+}
+
+.b_search > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.login_search{
+  border-top: 1px solid #cccccc;
+  padding-top: 4px;
+  width: 295px;
+  right: 25px;
+}
+.input_area, .btn_area{
+  margin-right: 15px;
+}
