@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<form action="" method="post">
+  <label for="s_age">Age:</label>
+  <input type="text" id="s_age" name="m_age"/>
+  <br/>
+
+  <button type="button" onclick="text()">확인</button>
+
+</form>
+<script>
+  function text(){
+    let s_age = document.getElementById("s_age");
+
+    //사용자가 입력한 나이 값을 얻어냄
+    let age = s_age.value;
+
+    if(!isNaN(age)){
+      //숫자 일 경우
+      if(age>=20 & age<30)
+        alert("20대");
+      else if(age>=30 & age<40)
+        alert("30대");
+      else if(age>=40)
+        alert("어르신");
+      else alert("아그들");
+    }else{
+      //숫자가 아닌 경우, 공백인 경우
+      if(age == "" || age.trim().length == 0) {
+        alert("값을 입력해 주세요");
+        s_age.value="";
+        s_age.focus();
+        return;
+      }else
+        alert("숫자를 입력하세요")
+    }
+
+
+  }
+</script>
+</body>
+</html>

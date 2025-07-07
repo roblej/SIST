@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #box{
+        width: 350px;
+        height: 480px;
+        border: 1px solid black;
+    }
+</style>
+<body>
+    <button type="button" onclick="ex1(this)">2단</button>
+    <button type="button" onclick="ex1(this)">3단</button>
+    <button type="button" onclick="ex1(this)">4단</button>
+    <button type="button" onclick="ex1(this)">5단</button>
+    <button type="button" onclick="ex1(this)">6단</button>
+    <button type="button" onclick="ex1(this)">7단</button>
+    <button type="button" onclick="ex1(this)">8단</button>
+    <button type="button" onclick="ex1(this)">9단</button>
+    <br/><br/>
+    <div id="box"></div>
+
+<script>
+  function ex1(obj){
+    let num = obj.innerHTML.charAt(0);
+    // console.log(num);
+    let str="";
+    for(let i=1;i<10;i++){
+      str += num+"*"+i+"="+(num*i)+"<br/>";
+    }
+    box.innerHTML = str;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <form action="" method="post" name="form1">
+    <label for="s_id">ID:</label>
+    <input type="text" id="s_id" name="m_id" data-item="아이디"/>
+    <br/>
+    <label for="s_pw">PW:</label>
+    <input type="text" id="s_pw" name="m_pw" data-item="비밀번호"/>
+    <br/>
+    <label for="s_name">NAME:</label>
+    <input type="text" id="s_name" name="m_name" data-item="이름"/>
+    <br/>
+    <label for="s_loc">LOC:</label>
+    <input type="text" id="s_loc" name="m_loc" data-item="거주지"/>
+    <br/>
+
+    <button type="button" onclick="login()">LOGIN</button>
+  </form>
+
+<script>
+  function login(){
+    let ff = document.forms[0];
+    console.log(ff.method+','+ff.name);
+
+    //검색된 폼 내부에 있는 폼 요소들을 가져온다.
+    let sub = ff.elements;// 해당 요소들 (input, select, button, textarea...) not label
+    console.log(sub.length);
+
+    // 마지막에 들어온 버튼은 유효성 검사에서 제외
+    for(let i=0;i<sub.length-1;i++) {
+      let str = sub[i].value.trim()
+
+      if (str.length == 0) {
+        // alert(sub[i].data-item + "을 입력하세요")
+        let item = sub[i].dataset.item;
+        alert(item+"을 입력하세요");
+        sub[i].value="";
+        sub[i].focus();
+        return;
+      }
+    }//for문의 끝
+  }
+</script>
+</body>
+</html>

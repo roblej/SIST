@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" onclick="test1()">버튼1</button>
+    <button type="button" onclick="test2('버튼2',100)">버튼2</button>
+    <button type="button" onclick="test3(this)">버튼3</button>
+    <button type="button" onclick="test4()">버튼4</button>
+
+    <p/>
+    <input type="text" id="txt" value="여러분~"/>
+    <br/>
+    <textarea cols="30" rows="5" id="ta">안녕하세요!</textarea>
+
+    <br/>
+    <input type="checkbox" id="ch1" name="chk" value="항목1"/>
+    <label for="ch1">Item1</label>
+    &nbsp;
+    <input type="checkbox" id="ch2" name="chk" value="항목2"/>
+    <label for="ch1">Item1</label>
+    &nbsp;
+    <input type="checkbox" id="ch3" name="chk" value="항목3"/>
+    <label for="ch1">Item1</label>
+    &nbsp;
+
+    <script>
+        function test1(){
+            //현재 문서에서 아이다가 txt인 요소를 검새갛여 변수 txt에 저장하자!
+            let txt = document.getElementById("txt");
+            let v1 = txt.value;
+
+            console.log(v1);
+            txt.value = "여러분 힘내세요~"
+        }
+        function test2(str,su){
+            ta.value = str;
+        }
+        function test3(obj){
+            // 여기서 obj라는 인자는 호출될 때 this를 넣어서 해당 태그가 된다.
+            // 즉, <button type="button"...>버튼3<button/>
+                console.log(obj);
+            let str = obj.innerText;
+            // ta.innerText = str;
+            ta.value = str;
+        }
+        function test4(){
+            // 현재 문서에서 이름(name)이 chk인 모든 요소들을 검색해
+            // 변수 ar에 저장한다.(검색되는 요소가 여러개 일 경우 무조건 )
+            let ar = document.getElementsByName("chk");
+            let size = ar.length;
+            alert(size);
+
+            alert(ar[0].value);//항목1
+
+            //이제 ar이라는 변수는 체크박스들 모두를 가지고 있ㄷ다.
+            // 어떤 체크박스가 선택된 상태인지를 알아내보자
+            for(let i=0;i<ar.length;i++){
+                if(ar[i].checked){
+                    console.log(ar[i].value);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
