@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    tr > td, th {
+      border: 1px solid black;
+      text-align: center;
+      width: 70px;
+    }
+  </style>
+</head>
+<body>
+<h1>Group Checkbox 연습</h1>
+<table id="table">
+  <thead>
+  <header>그룹체크박스테이블</header>
+  </thead>
+  <tbody>
+  <tr>
+    <th>번호</th>
+    <th>이름</th>
+    <th>
+      <input type="checkbox" id="gb1" class="g1">
+      <label>그룹1</label>
+    </th>
+    <th>
+      <input type="checkbox" id="gb2" class="g2">
+      <label>그룹2</label>
+    </th>
+    <th>
+      <input type="checkbox" id="gb3" class="g3">
+      <label>그룹3</label>
+    </th>
+    <th>
+      <input type="checkbox" id="gb4" class="g4">
+      <label>그룹4</label>
+    </th>
+    <th>
+      <input type="checkbox" id="gb5" class="g5">
+      <label>그룹5</label>
+    </th>
+    <th>비고</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>마루치</td>
+    <td>
+      <input type="checkbox" class="g1">
+    </td>
+    <td>
+      <input type="checkbox" class="g2">
+    </td>
+    <td>
+      <input type="checkbox" class="g3">
+    </td>
+    <td>
+      <input type="checkbox" class="g4">
+    </td>
+    <td>
+      <input type="checkbox" class="g5">
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>이도</td>
+    <td>
+      <input type="checkbox" class="g1">
+    </td>
+    <td>
+      <input type="checkbox" class="g2">
+    </td>
+    <td>
+      <input type="checkbox" class="g3">
+    </td>
+    <td>
+      <input type="checkbox" class="g4">
+    </td>
+    <td>
+      <input type="checkbox" class="g5">
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>일지매</td>
+    <td>
+      <input type="checkbox" class="g1">
+    </td>
+    <td>
+      <input type="checkbox" class="g2">
+    </td>
+    <td>
+      <input type="checkbox" class="g3">
+    </td>
+    <td>
+      <input type="checkbox" class="g4">
+    </td>
+    <td>
+      <input type="checkbox" class="g5">
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>을불</td>
+    <td>
+      <input type="checkbox" class="g1">
+    </td>
+    <td>
+      <input type="checkbox" class="g2">
+    </td>
+    <td>
+      <input type="checkbox" class="g3">
+    </td>
+    <td>
+      <input type="checkbox" class="g4">
+    </td>
+    <td>
+      <input type="checkbox" class="g5">
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>창조리</td>
+    <td>
+      <input type="checkbox" class="g1">
+    </td>
+    <td>
+      <input type="checkbox" class="g2">
+    </td>
+    <td>
+      <input type="checkbox" class="g3">
+    </td>
+    <td>
+      <input type="checkbox" class="g4">
+    </td>
+    <td>
+      <input type="checkbox" class="g5">
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>이순신</td>
+    <td>
+      <input type="checkbox" class="g1">
+    </td>
+    <td>
+      <input type="checkbox" class="g2">
+    </td>
+    <td>
+      <input type="checkbox" class="g3">
+    </td>
+    <td>
+      <input type="checkbox" class="g4">
+    </td>
+    <td>
+      <input type="checkbox" class="g5">
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>송태섭</td>
+    <td>
+      <input type="checkbox" class="g1">
+    </td>
+    <td>
+      <input type="checkbox" class="g2">
+    </td>
+    <td>
+      <input type="checkbox" class="g3">
+    </td>
+    <td>
+      <input type="checkbox" class="g4">
+    </td>
+    <td>
+      <input type="checkbox" class="g5">
+    </td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+  /* 내가 짠
+  $("table>tbody th input").click(function () {
+    let gnum = $(this).attr("class");
+    let ar = $("table>tbody td input." + gnum);
+    ar.prop("checked", this.checked)
+  })
+  $("table>tbody td input").click(function (){
+    let gnum = $(this).attr("class");
+    let ch_len = $("#table>tbody td input."+gnum+"[type=checkbox]:checked").length;
+    let tot_len =$("#table>tbody td input."+gnum+"[type=checkbox]").length
+    console.log(ch_len,tot_len)
+
+    if(ch_len == tot_len){
+      $("#table>tbody th input."+gnum+"[type=checkbox]").prop("checked",true);
+    }else {
+      $("#table>tbody th input."+gnum+"[type=checkbox]").prop("checked", false);
+    }
+  })
+  */
+  /* 초보적
+  $(function (){
+    $("#gb1").click(function (){
+      let ar = $("#table tbody td:nth-child(3)").find(":checkbox");
+
+      //배열의 모든 체크박스들의 상태를 gb1와 같게
+      ar.prop("checked",this.checked);
+    })
+    $("#gb2").click(function (){
+      let ar = $("#table tbody td:nth-child(4)").find(":checkbox");
+
+      //배열의 모든 체크박스들의 상태를 gb1와 같게
+      ar.prop("checked",this.checked);
+    })
+    $("#gb3").click(function (){
+      let ar = $("#table tbody td:nth-child(5)").find(":checkbox");
+
+      //배열의 모든 체크박스들의 상태를 gb1와 같게
+      ar.prop("checked",this.checked);
+    })
+  })
+*/
+  /*유지보수 굿*/
+  $("table>tbody th input:checkbox").click(function () {
+    //클릭한 checkbox의 가장 가까운태그(상위태그)를 알아낸다.
+    // let p = $(this).parent();
+    let p = $(this).closest("th")// 현재 클릭한 체크박스의 가장 가까운 태그를 반환(th) - 자식은 생각하지 않는다
+    //앞서 구한 부모태그(th)가 해당 행(tr)에서 몇번째 요소인지 인덱스를 알아내자
+    let idx = $("table>tbody tr th").index(p);
+    // console.log(idx)
+    let ar = $("#table>tbody td:nth-child("+(idx+1)+") input[type=checkbox]");
+    ar.prop("checked",this.checked);
+
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #table{
+      width: 600px;
+      border-collapse: collapse;
+    }
+    #table td{
+      border: 1px solid black;
+    }
+    #table thead td{
+      border: none;
+    }
+    .w30{
+      width: 30px;
+    }
+  </style>
+</head>
+<body>
+<h1>jQuery를 활용한 전체선택</h1>
+<table id="table">
+  <caption>체크박스 테이블</caption>
+  <thead>
+  <tr>
+    <td colspan="2">
+      <input type="checkbox" id="all">
+      <label for="all">전체선택</label>
+    </td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="w30">
+      <input type="checkbox" id="ch1" name="chk"/>
+    </td>
+    <td>항목1</td>
+  </tr>
+  <tr>
+    <td class="w30">
+      <input type="checkbox" id="ch2" name="chk"/>
+    </td>
+    <td>항목1</td>
+  </tr>
+  <tr>
+    <td class="w30">
+      <input type="checkbox" id="ch3" name="chk"/>
+    </td>
+    <td>항목1</td>
+  </tr>
+  <tr>
+    <td class="w30">
+      <input type="checkbox" id="ch4" name="chk"/>
+    </td>
+    <td>항목1</td>
+  </tr>
+  <tr>
+    <td class="w30">
+      <input type="checkbox" id="ch5" name="chk"/>
+    </td>
+    <td>항목1</td>
+  </tr>
+  </tbody>
+</table>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+  $(function (){
+    //id가 all인 요소를 클릭할 때 마다 수행하는 이벤트 등록
+    $("#all").click(function () {
+      //tbody안에 있는 모든 checkbox들을 검색하여 변수 ar에 저장
+      let ar =$("#table>tbody").find(":checkbox")
+      // console.log(ar.length+":"+this.checked);
+      ar.prop("checked",this.checked)
+      if(this.checked){
+        $("#all").next().text("선택해제")
+      }else $("#all").next().text("전체선택")
+
+    })
+    $("#table>tbody input:checkbox").click(function (){
+      /*
+      let ar = $("#table>tbody").find(":checkbox");
+      // console.log(ar.length)
+      let chk = true;
+      for(let i=0;i<ar.length;i++){
+        if(!$(ar[i]).is(":checked")){
+          chk = false;
+          break;
+        }
+      }
+        $("#all").prop("checked",chk)
+      if(!chk){
+        $("#all").next().text("전체선택");
+      }else $("#all").next().text("전체해제");
+      */
+
+      let ch_len = $("#table>tbody input[type=checkbox]:checked").length;
+      let tot_len =$("#table>tbody input[type=checkbox]").length
+
+      if(ch_len == tot_len){
+        $("#all").prop("checked",true);
+        $("#all").next().text("전체해제");
+      }else {
+        $("#all").prop("checked", false);
+        $("#all").next().text("전체선택");
+      }
+    })
+
+
+  })
+
+
+</script>
+
+</body>
+</html>
