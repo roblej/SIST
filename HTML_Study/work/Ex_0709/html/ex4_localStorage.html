@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  #result {
+    border-top: 2px solid #ababab;
+  }
+</style>
+<body>
+<div id="content">
+  <header>
+    <h2>로컬 스토리지</h2>
+  </header>
+  <div id="form">
+    <form action="" method="post" id="travelForm">
+      <table class="form">
+        <tbody>
+        <tr>
+          <td class="label">Traveler</td>
+          <td><input type="text" name="traveler" id="traveler"></td>
+        </tr>
+
+        <tr>
+          <td class="label">Destination</td>
+          <td><input type="text" name="destination" id="destination"></td>
+        </tr>
+        <tr>
+          <td class="label">Transprotation</td>
+          <td><input type="text" name="transprotation" id="transprotation"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="2" class="button">
+            <button type="button" onclick="addData()">Save</button>
+            <button type="button" onclick="clearData()">ClearData</button>
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </form>
+  </div>
+  <div id="result">
+    <!-- 저장된 storage값을 표현할 곳 -->
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+  let db = getStorage();//무조건 한번 수행
+
+  $(function () {
+    init();
+  })
+
+  function getStorage() {
+    //현재 사용자의 브라우저를 확인해서 localStorage를 지원하는지를 판단하여 반환하는 기능
+    try {
+      if (window.localStorage)
+        return window.localStorage
+    } catch (e) {
+      return undefined
+    }
+  }
+
+  function init() {
+    // 만약 저장소(db변수)에 저장된 값이 있을때 아이디가 result인 div에 표현하는 함수
+    // 결과값을 변수에 저장
+    let res = ""
+    //저장소에 저장된 key와 value를 얻어낸다.
+    for (let i = 0; i < db.length; i++) {
+      let key = db.key(i)
+      let value = db.getItem(key)
+      res += key + ":" + value + "<br/>";
+    }//for의 끝
+
+    // 아이디가 result인 div에 표현한다.
+    $("#result").html(res)
+  }
+
+  function addData(){
+    //사용자가 입력한 값(여행자명,목적지,여행수단)을 가져와서 저장
+    let v1 = document.getElementById("traveler").value;
+    let v2 = $("#destination").val();
+    let v3 = $("#transprotation").val().trim();
+    console.log(v2)
+
+
+    // 받은 값들의 유효성 검사 패스
+    // 저장소에 키와 값을 연결하여 저장하자
+    db.setItem("traveler",v1)
+    db.setItem("destination",v2)
+    db.setItem("transprotation",v3)
+  }
+  function clearData(){
+    //원하는 키로 하나의 데이터를 삭제!
+    // db.removeItem("destination")
+
+    //저장소 모든 데이터 삭제!
+    db.clear();
+  }
+</script>
+</body>
+</html>

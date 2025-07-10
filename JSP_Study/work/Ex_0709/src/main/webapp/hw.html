@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<article>
+  <header><h2>submit</h2></header>
+  <form action="MyServlet4" method="post">
+    <label for="m_id">ID :</label>
+    <input type="text" id="m_id" name="m_id"/>
+    <br/>
+
+    <label for="m_pw">PW :</label>
+    <input type="password" id="m_pw" name="m_pw"/>
+    <br/>
+
+    <label for="m_phone">Phone :</label>
+    <select id="m_phone" name="m_phone">
+      <option value="010">010</option>
+      <option value="011">011</option>
+      <option value="02">02</option>
+    </select>
+    -
+    <input type="text" id="m_phone2" name="m_phone"/>
+    -
+    <input type="text" id="m_phone3" name="m_phone"/>
+    <br/>
+
+    <label >Hobby :</label>
+    <input type="checkbox" name="m_hb" id="hb_book" value="독서"/>
+    <label for="hb_book">독서</label>
+    <input type="checkbox" name="m_hb" id="hb_movie" value="영화"/>
+    <label for="hb_movie">영화</label>
+    <input type="checkbox" name="m_hb" id="hb_game" value="게임"/>
+    <label for="hb_game">게임</label>
+    <br/>
+
+    <button type="button" onclick="exe(this.form)">저장</button>
+    <button type="reset">다시입력</button>
+  </form>
+</article>
+
+<script>
+
+  function exe(frm){
+    //유효성 검사
+    let mId = document.getElementById("m_id")
+    let mPw = document.getElementById("m_pw")
+    let mPhone2 = document.getElementById("m_phone2");
+    // id가 m_phone3인 input의 값
+    let mPhone3 = document.getElementById("m_phone3");
+    // let mHobby = document.querySelector("input[name="m_hb"]:checked")
+    if(mId.value.trim().length == 0){
+      alert("아이디를 입력해주세요")
+      return
+    }
+    if(mPw.value.trim().length == 0){
+      alert("비밀번호를 입력해주세요")
+      return
+    }
+    if(mPhone2.value.trim().length == 0 || mPhone3.value.trim().length == 0){
+      alert("전화번호를 입력해주세요")
+      return
+    }
+
+    frm.submit()
+  }
+</script>
+</body>
+</html>

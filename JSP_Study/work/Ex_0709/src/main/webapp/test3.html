@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <article>
+    <header><h2>서블릿 인자 전달 연습</h2></header>
+    <form action="/MyServlet3" method="post">
+      <label>친구1</label>
+      <input type="text" name="m_name">
+      <br/>
+      <label>친구2</label>
+      <input type="text" name="m_name">
+      <br/>
+      <label>친구3</label>
+      <input type="text" name="m_name">
+      <br/>
+      <label>친구4</label>
+      <input type="text" name="m_name">
+      <br/>
+      <label>친구5</label>
+      <input type="text" name="m_name">
+      <br/>
+      <button type="button" onclick="exe(this.form)">보내기</button>
+    </form>
+  </article>
+<script>
+  function exe(frm){
+    //유효성 검사 생략
+
+    //form에 있는 데이터를 서버로 보낸다.
+    frm.submit()
+  }
+</script>
+</body>
+</html>
