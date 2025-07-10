@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebServlet;
 public class MyServlet4 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request, response);
     }
 
     @Override
@@ -23,31 +23,35 @@ public class MyServlet4 extends HttpServlet {
         String[] mPhone = request.getParameterValues("m_phone");
         String[] mHobby = request.getParameterValues("m_hb");
 
-        /*  ========== 기존 로직 시작 ==========
+        //========== 기존 로직 시작 ==========
         //반환 한글로
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.println("반환");
         out.println("<ul>");
-        out.println("<li>"+mId+"</li>");
-        out.println("<li>"+mPw+"</li>");
+        out.println("<li>" + mId + "</li>");
+        out.println("<li>" + mPw + "</li>");
         out.print("<li>");
-        for(int i=0;i<mPhone.length;i++){
+        for (int i = 0; i < mPhone.length; i++) {
             out.print(mPhone[i]);
-            if(i!=mPhone.length-1){
-            out.print("-");
+            if (i != mPhone.length - 1) {
+                out.print("-");
             }
         }
         out.print("</li>");
-        out.print("<li>");
-        for(String str : mHobby){
-            out.print(str+" ");
+        if (mHobby != null) {
+            out.print("<li>");
+
+            for (String str : mHobby) {
+                out.print(str + " ");
+            }
+            out.print("</li>");
         }
-        out.print("</li>");
-        ========== 기존 로직 끝 ========== */
+        out.close();
+        //========== 기존 로직 끝 ==========
 
         // 개선된 로직
-        response.setContentType("text/html;charset=UTF-8");
+        /*response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         String phoneString = String.join("-", mPhone);
@@ -65,6 +69,6 @@ public class MyServlet4 extends HttpServlet {
             out.println("<li>" + item + "</li>");
         }
         out.println("</ul>");
-
+        out.close();*/
     }
 }
