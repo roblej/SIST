@@ -218,7 +218,7 @@
 
       MemoDAO.Add(writer,content,ip);
 
-    response.sendRedirect("memo.jsp");
+    response.sendRedirect("memoList.jsp");
 }
     %>
 </script>
