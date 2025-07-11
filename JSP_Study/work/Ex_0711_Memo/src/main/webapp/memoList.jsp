@@ -8,6 +8,9 @@
     <title>Insert title here</title>
 
     <style>
+        #content{
+            resize: none;
+        }
         #list_table {
             border-collapse: collapse;
             width: 400px;
