@@ -1,3 +1,5 @@
+<%@ page import="mybatis.vo.MemoVO" %>
+<%@ page import="mybatis.vo.MemVO" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html >
 <html>
@@ -47,7 +49,19 @@
     </style>
 </head>
 <body>
-
+<%
+    String mode = request.getParameter("mode");
+    //HttpSessionrㅐㄱ체가 ㄴessiondㅣ라는 이름으로 이미 생성되어 제공되고 있다.
+    //이런 HttpSession은 브라우저를 닫을 때까지 사용가능함!
+    //세션에 "mvo"라는 이름으로 저장된 것이 있다면 로그인을 한 상태로 ㄹ인지하자!
+    //먼저 세션으로부터 "mvo"라는 이름으로 저장된 객체를 얻어내어
+    //Object형 변수 obj에 저장한다.
+    Object obj = null;
+    if(!(mode == null)) {
+        obj = session.getAttribute("mvo");
+    }
+    if(obj == null){
+        %>
 <div id="log_fail" class="show">
 
     <form action="" method="post">
@@ -82,9 +96,15 @@
         </table>
     </form>
 </div>
+<%
+    } else{
+        //obj가 null이 아닐때
+        //이름을 얻기 위해 obj를 MemoVO로 형변환한다.
+        MemVO mvo = (MemVO)obj;
+%>
 <div id="log_suc" class="show">
 
-    <p>(마루치)님 환영</p>
+    <p><%=mvo.getM_name()%>님 환영</p>
     <p class="btn">
         <a href="logout.jsp">로그아웃</a>
     </p>
@@ -92,7 +112,9 @@
         <a href="memoList.jsp">메모장</a>
     </p>
 </div>
-
+<%
+    }
+%>
 <script>
     function exe(){
         var id = $("#s_id");

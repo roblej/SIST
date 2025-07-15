@@ -4,8 +4,6 @@ import mybatis.service.FactoryService;
 import mybatis.vo.MemoVO;
 import org.apache.ibatis.session.SqlSession;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class MemoDAO {
@@ -23,9 +21,8 @@ public class MemoDAO {
         vo.setContent(content);
         vo.setWriter(writer);
         vo.setIp(ip);
-        vo.setReg_date(String.valueOf(LocalDate.now()));
         SqlSession ss = FactoryService.getFactory().openSession();
-        int cnt = ss.insert("memo.insert", vo);
+        int cnt = ss.insert("memo.add", vo);
         if(cnt>0){
             ss.commit();
         }else ss.rollback();
