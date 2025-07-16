@@ -184,20 +184,17 @@
     </tr>
     </thead>
     <tbody>
+    <%
+        if(!dir.equalsIgnoreCase(mvo.getM_id())){
+            int idx = dir.lastIndexOf("/");
+            String parentDir = dir.substring(0, idx);
+    %>
     <tr>
         <td></td>
-        <%
-            int idx = dir.lastIndexOf("/");
-            String parentDir = "";
-            if (idx > 0) {
-                parentDir = dir.substring(0, idx);
-            } else
-                parentDir = mvo.getM_id();
-        %>
         <td colspan="2"><a href="javascript:backback('<%=parentDir%>');">상위로...</a></td>
     </tr>
     <%
-        //상위로 기능 구현
+        }//상위로 기능 구현
     %>
 
     <%
