@@ -1,0 +1,11 @@
+table{
+    border-collapse: collapse;
+    width: 400px;
+    margin: 0 auto;
+    border: 1px solid navy;
+}
+table th, table td{
+    /*border: 1px solid navy;*/
+    padding: 5px;
+    font-size: 14px;
+}
