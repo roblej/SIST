@@ -3,16 +3,22 @@
 <html>
 <head>
     <title>Title</title>
-<link rel="stylesheet" type="text/css" href="css/product_content.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-<jsp:useBean id="sb" class="shop.bean.ShopBean" scope="session"/>
+<header>
+    <jsp:include page="./menu.jsp"/>
+</header><jsp:useBean id="sb" class="shop.bean.ShopBean" scope="session"/>
 <jsp:setProperty name="sb" property="p_num" param="prod_num"/>
 <%
+    //위에서 파라미터로 넘어오는 제품번호를 ShopBean의 p_num에 저장함
+    //여기서 ShopBean의 기능중 특정 제품을 검색하는 함수를 호출한다.
+
     ProductVO pvo = sb.getProduct();
 
 %>
-<table>
+<table class="table">
+
     <colgroup>
         <col width="40%">
         <col width="60%">
@@ -42,10 +48,10 @@
         <td colspan="2">제품설명 : <%=pvo.getP_content()%></td>
     </tr>
     <tr>
-        <td colspan="2" align="center"><img src ="images/<%=pvo.getP_image_l()%>" width="100" height="95"></td>
+        <td colspan="2" align="center"><img src ="images/<%=pvo.getP_image_l()%>"></td>
     </tr>
     <tr>
-        <td colspan="2"></td>
+        <td colspan="2" style="text-align: center"><%=pvo.getP_date()%></td>
     </tr>
     <tr>
         <td colspan="2" align="center">
