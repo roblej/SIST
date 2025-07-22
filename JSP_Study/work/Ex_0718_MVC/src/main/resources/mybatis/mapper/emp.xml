@@ -18,10 +18,10 @@
                     empno = #{searchValue}
                 </when>
                 <when test="searchType== 'ename'">
-                    ename = #{searchValue}
+                    ename like concat('%', #{searchValue} , '%')
                 </when>
                 <when test="searchType== 'job'">
-                    job = #{searchValue}
+                    job like concat('%', #{searchValue} , '%')
                 </when>
                 <when test="searchType== 'deptno'">
                     deptno = #{searchValue}

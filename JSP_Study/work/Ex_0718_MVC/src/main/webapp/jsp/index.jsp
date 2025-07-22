@@ -71,6 +71,7 @@
             </select>
             <input type="text" id="searchValue" name="seasrchValue"/>
             <button type="button" onclick="searchEmp()">보내기</button>
+            <button type="button" onclick="searchEmp2()">보내기(JSON)</button>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -99,6 +100,38 @@
             }
         }).done(function (res) {//
             $("table.table>tbody").html(res)
+            $("#searchDialog").dialog("close")
+        });
+    }    function searchEmp2() {
+        $.ajax({
+            url : "controller",
+            type: "post",
+            dataType : "json", //**********서버에서 응답하는 데이터형식 설정 ************
+            data: {
+                type      : "search2",
+                searchType : $("#searchType").val(),
+                searchValue : $("#searchValue").val()
+            }
+        }).done(function (res) {//
+            console.log(res)
+            console.log(res.items.length)
+            let str = ""
+            for(let i =0;i<res.items.length;i++){
+                str += "<tr><td>"
+                str+= res.items[i].empno;
+                str+="</td><td>"
+                str+= res.items[i].ename;
+                str+="</td><td>"
+                str+= res.items[i].job;
+                str+="</td><td>"
+                str+= res.items[i].sal;
+                str+="</td><td>"
+                str+= res.items[i].hiredate;
+                str+="</td><td>"
+                str+= res.items[i].deptno;
+                str+="</td><tr>"
+            }
+            $("table.table>tbody").html(str)
             $("#searchDialog").dialog("close")
         });
     }
