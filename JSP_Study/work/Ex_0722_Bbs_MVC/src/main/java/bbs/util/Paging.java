@@ -63,6 +63,7 @@ public class Paging {
     }
     //총 게시물의 수가 변경될 때 자동으로 총 펭지ㅣ 수를 구하면 좋을 것 같다.
     public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
         //총 게시물 수가 변경될 때 총 페이지수를 구하자!
 //        this.totalCount = totalCount/numPerPage;
 //        if(totalCount%numPerPage>0)

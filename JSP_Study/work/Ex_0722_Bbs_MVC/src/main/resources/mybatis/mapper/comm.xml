@@ -10,7 +10,10 @@
     where b_idx = #{b_idx}
 </select>
 <!-- 댓글 저장 -->
-
+<insert id="add" parameterType="mybatis.vo.CommVO">
+    insert into comment_t(writer,content,pwd,write_date,ip,b_idx)
+    values(#{writer},#{content},#{pwd},now(),#{ip},#{b_idx})
+</insert>
 <!-- 댓글 삭제 -->
 
 <!-- 댓글 수정 -->

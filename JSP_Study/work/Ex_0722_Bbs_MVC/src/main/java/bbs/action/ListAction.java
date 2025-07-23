@@ -17,7 +17,7 @@ public class ListAction   implements Action{
         //총 게시물의 수를 얻어낸다
         int totalCount = BbsDAO.getTotalCount(bname);
         //페이징 처리를 위한 객체 생성
-        Paging page = new Paging(10,3);
+        Paging page = new Paging(5,3);
         page.setTotalCount(totalCount);// 총 페이지 수까지 구함
         //현재 페이지 값을 파라미터로 받는다.
         String cPage = request.getParameter("cPage");
@@ -33,7 +33,7 @@ public class ListAction   implements Action{
         // JSP에서 표현하기 위해서 request에 저장!
         request.setAttribute("ar",ar);
         request.setAttribute("paging",page);
-
+        request.setAttribute("nowPage",page.getNowPage());
         return "list.jsp";
     }
 }

@@ -56,16 +56,22 @@
       //     return;//수행 중단
       //   }
       // }
-      if($("#title").val().length<1){
+      if($("#title").val().trim().length<1){
         alert("제목을 입력하세요");
+        $("#title").val("")
+        $("#title").focus()
         return
       }
-      if($("#writer").val().length<1){
+      if($("#writer").val().trim().length<1){
         alert("이름을 입력하세요");
+        $("#writer").val("")
+        $("#writer").focus()
         return
       }
-      if($("#content").val().length<1){
+      if($("#content").val().trim().length<1){
         alert("내용을 입력하세요");
+        $("#content").val("")
+        $("#content").focus()
         return
       }
 //		document.forms[0].action = "test.jsp";
@@ -77,6 +83,7 @@
 <div id="bbs">
   <form action="Controller?type=write" method="post"
         encType="multipart/form-data">
+    <input type="hidden" name="bname" value="BBS"/>
     <table summary="게시판 글쓰기">
       <caption>게시판 글쓰기</caption>
       <tbody>

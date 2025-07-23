@@ -118,8 +118,9 @@
 
                     <%
                         Object obj1 = request.getAttribute("paging");
+                        Paging p = null;
                         if (obj1 != null) {
-                            Paging p = (Paging) obj1;
+                            p = (Paging) obj1;
                             int startPage = p.getStartPage();
                             int endPage = p.getEndPage();
                     %>
@@ -135,10 +136,17 @@
                     <%
                         }
                         for (int i = startPage; i <= endPage; i++) {
+                            if (p.getNowPage() == i) {
                     %>
-                    <li <% if(p.getNowPage() == i){%>class="now"<%}%>><%=i%>
+                    <li class="now"><%=i%>
                     </li>
                     <%
+                    } else {
+                    %>
+                    <li><a href="Controller?type=list&cPage=<%=i%>"><%=i%>
+                    </a></li>
+                    <%
+                            }
                         }
                         if (p.getEndPage() < p.getTotalPage()) {
                     %>
@@ -150,6 +158,7 @@
                     <%
                         }
                     %>
+
                     <%
                         }
                     %>
@@ -166,14 +175,23 @@
             Object obj = request.getAttribute("ar");
             if (obj != null) {
                 BbsVO[] ar = (BbsVO[]) obj;
+                int i = 0;
                 for (BbsVO vo : ar) {
+                    int num = p.getTotalCount() - ((p.getNowPage() - 1) * p.getNumPerPage() + i);
         %>
         <tr>
-            <td><%=vo.getB_idx()%>
+            <td><%=num%>
             </td>
             <td style="text-align: left">
-                <a href="#">
+                <a href="Controller?type=view&b_idx=<%=vo.getB_idx()%>&cPage=${nowPage}">
                     <%=vo.getSubject()%>
+                    <%
+                        if (vo.getC_list().size() > 0){
+                    %>
+                    [<%=vo.getC_list().size()%>]
+                    <%
+                        }
+                    %>
                 </a></td>
             <td><%=vo.getWriter()%>
             </td>
@@ -183,6 +201,7 @@
             </td>
         </tr>
         <%
+                    i++;
                 }//for의 끝
             }
         %>

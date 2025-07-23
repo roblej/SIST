@@ -17,7 +17,7 @@ public class SaveImgAction implements Action {
         String realPath = application.getRealPath("/editor_img");
         System.out.println(realPath);
         try{
-            MultipartRequest mr = new MultipartRequest(request,realPath,1024*1024*5, new DefaultFileRenamePolicy());
+            MultipartRequest mr = new MultipartRequest(request,realPath,1024*1024*5, "utf-8",new DefaultFileRenamePolicy());
             File f = mr.getFile("upload");
             System.out.println(f.getAbsolutePath());
             String f_name = null;
