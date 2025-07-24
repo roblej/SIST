@@ -63,6 +63,11 @@
             background: silver
         }
 
+        .t_bold{
+            font-weight: bold;
+            color: #0056b3;
+        }
+
 
     </style>
     <script type="text/javascript">
@@ -109,6 +114,7 @@
     <form action="Controller?type=rewrite" method="post"
           encType="multipart/form-data">
         <input type="hidden" name="bname" value="BBS"/>
+        <input type="hidden" name="cPage" value="${param.cPage}"/>
         <input type="hidden" name="b_idx" value="<%=vo.getB_idx()%>">
         <table summary="게시판 글쓰기">
             <caption>게시판 글쓰기</caption>
@@ -128,7 +134,13 @@
             </tr>
             <tr>
                 <th>첨부파일:</th>
-                <td><input type="file" id="file" name="file"/><%=vo.getOri_name()%></td>
+                <td><input type="file" id="file" name="file"/>
+                    <%if(vo.getFile_name() != null){%>
+                    <p class="t_bold"><%=vo.getOri_name()%></p>
+                    <%
+                        }
+                    %>
+                </td>
 
             </tr>
             <!--
@@ -141,7 +153,7 @@
                 <td colspan="2">
                     <input type="button" value="보내기"
                            onclick="sendData()"/>
-                    <input type="button" value="다시"/>
+                    <input type="button" value="취소" onclick="goBack()"/>
                     <input type="button" value="목록"/>
                 </td>
             </tr>
@@ -154,6 +166,9 @@
 <script src="./js/summernote-lite.js"></script>
 <script src="./js/lang/summernote-ko-KR.js"></script>
 <script>
+    function goBack() {
+        location.href = "Controller?type=view&b_idx=${param.b_idx}&cPage=${param.cPage}";
+    }
     $(function () {
         $("#content").summernote({
             lang  : "ko-KR",

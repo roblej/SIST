@@ -43,7 +43,15 @@
     <!-- 원글 수정 -->
     <update id="rewrite" parameterType="Map">
         update bbs_t
-        set subject = #{subject}, content = #{content},ori_name = #{ori_name},file_name = #{file_name}
+        <trim prefix="set" suffixOverrides=",">
+            subject = #{subject},
+            content = #{content},
+            ip=#{ip},
+            <if test="file_name != null">
+            file_name = #{file_name},
+            ori_name = #{ori_name}
+            </if>
+        </trim>
         where b_idx = #{b_idx}
     </update>
     <!-- 조회수증가 -->

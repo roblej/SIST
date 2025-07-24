@@ -63,15 +63,19 @@ public class BbsDAO {
     }
 
     //수정
-    public static int rewrite(String b_idx,String title,String content,String fname,String oname){
+    public static int rewrite(String b_idx,String title,String content,String fname,String oname,String ip){
         int cnt = 0;
         SqlSession ss = FactoryService.getFactory().openSession();
         Map<String,String> map = new HashMap();
         map.put("b_idx",b_idx);
         map.put("subject",title);
         map.put("content",content);
+        if(fname!=null){
         map.put("file_name",fname);
         map.put("ori_name",oname);
+        }
+        map.put("ip",ip);
+        System.out.println("DAO");
         cnt = ss.update("bbs.rewrite",map);
         if(cnt>0){
             ss.commit();

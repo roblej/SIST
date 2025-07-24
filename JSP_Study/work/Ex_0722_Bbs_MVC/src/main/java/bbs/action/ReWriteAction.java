@@ -20,6 +20,7 @@ public class ReWriteAction implements Action {
         String b_idx = request.getParameter("b_idx");
 
         if (enc_type == null || enc_type.startsWith("application/")) {
+            //view.jsp에서 수정버튼을 클릭한 경우 이때는 수정화면으로 이동해야함
             BbsVO vo = BbsDAO.getView(b_idx);
             request.setAttribute("vo", vo);
             viewPath = "rewrite.jsp";
@@ -35,10 +36,12 @@ public class ReWriteAction implements Action {
                 MultipartRequest mr = new MultipartRequest(request,realPath,1024*1024*5, "utf-8",new DefaultFileRenamePolicy());
                 //이 떄 첨부파일이 있다면 realPath경로에 저장된 상태다
                 String b_idx2 = mr.getParameter("b_idx");
+                String cPage =  mr.getParameter("cPage");
                 //나머지 파라미터 얻기(title,writer,content)
                 String title = mr.getParameter("title");
 //                String writer = mr.getParameter("writer");
                 String content = mr.getParameter("content");
+                String ip = request.getRemoteAddr();//요청자의 ip
 //                String bname = mr.getParameter("bname");
                 //첨부파일이 있다면 fname과 oname을 얻어야한다.
                 File f = mr.getFile("file");
@@ -48,9 +51,10 @@ public class ReWriteAction implements Action {
                     fname = f.getName();
                     oname = mr.getOriginalFileName("file"); //원래 이름
                 }
-//                String ip = request.getRemoteAddr();//요청자의 ip
                 //DB에 저장
-                int cnt = BbsDAO.rewrite(b_idx2,title,content,fname,oname);
+                int cnt = BbsDAO.rewrite(b_idx2,title,content,fname,oname,ip);
+                viewPath = "Controller?type=view&b_idx= "+b_idx2+"&cPage="+cPage;
+                System.out.println(viewPath);
             }catch (Exception e) {
                 e.printStackTrace();
             }
