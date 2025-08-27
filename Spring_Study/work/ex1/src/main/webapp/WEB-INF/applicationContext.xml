@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+<!--    <mvc:annotation-driven/>-->
+
+    <bean class="ex1.vo.TestVO" id="vo1">
+        <property name="msg" value="DI연습입니다."/>
+    </bean>
+    <bean class="ex1.vo.Test2VO" id="vo2">
+        <constructor-arg value="asd"/>
+        <constructor-arg value="123"/>
+    </bean>
+
+<!--  test3VO를 생성하는 빈을 정의하자
+  생성될 때 인자로 3개의 값을 저장해야한다.
+  첫번째가 name = "홍길동"
+  두번쨰가 age = 23
+  세번쨰가 isMember = true or false -->
+    <bean class="ex1.vo.Test3VO" id="vo3">
+        <constructor-arg value="홍길동"/>
+        <constructor-arg value="23"/>
+        <constructor-arg value="true"/>
+    </bean>
+
+    <bean class="ex1.vo.Test4VO">
+        <property name="msg" value="123"/>
+        <property name="t2" ref="vo2"/>
+    </bean>
+</beans>
