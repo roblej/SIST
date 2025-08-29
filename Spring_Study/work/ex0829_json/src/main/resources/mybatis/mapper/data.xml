@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data">
+<!-- 댓글 저장 -->
+<insert id="add" parameterType="mybatis.vo.DataVO">
+    insert into memo_t(writer,content,reg_date,ip)
+    values(#{title},#{content},now(),#{ip})
+</insert>
+<!-- 댓글 삭제 -->
+
+<!-- 댓글 수정 -->
+</mapper>
