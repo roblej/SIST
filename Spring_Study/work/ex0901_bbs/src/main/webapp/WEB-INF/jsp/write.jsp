@@ -84,6 +84,10 @@
 
       document.forms[0].submit();
     }
+    
+    function goToList() {
+        document.listForm.submit();
+    }
   </script>
 </head>
 <body>
@@ -122,13 +126,18 @@
           <input type="button" value="보내기"
                  onclick="sendData()"/>
           <input type="button" value="다시"/>
-          <input type="button" value="목록" onclick="javascript:location.href='list?cPage=${param.cPage}'"/>
+          <input type="button" value="목록" onclick="goToList()"/>
         </td>
       </tr>
       </tbody>
     </table>
   </form>
 </div>
+
+<form name="listForm" method="get" action="/list">
+    <input type="hidden" name="bname" value="BBS"/>
+    <input type="hidden" name="cPage" value="${param.cPage}"/>
+</form>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="/resources/js/summernote-lite.js"></script>
@@ -181,16 +190,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
