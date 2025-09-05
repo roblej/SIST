@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.ex0905_bbs.mybatis.mapper.BbsMapper">
+    <resultMap id="map1" type="com.sist.ex0905_bbs.mybatis.vo.BbsVO">
+        <id property="b_idx" column="b_idx"/>
+        <collection property="c_list" ofType="mybatis.vo.CommVO" select="comm.list" column="b_idx"/>
+    </resultMap>
+    <!-- 원글 목록 : 인자 3개(bname,begin,end)  -->
+    <select id="list" resultMap="map1"
+            parameterType="Map">
+        select * from (
+        select @RN:=@RN+1 as rnum, a.* From(
+        select * from bbs_t
+        where status = 0 <!-- 삭제하지 않은 글 -->
+        and bname = #{bname}
+        order by b_idx desc
+        ) a, (select @RN:=0) b
+        ) c where c.rnum between #{begin} and #{end}
+    </select>
+    <!-- 총 게시물 수를 반환하는 기능 -->
+    <select id="totalCount" resultType="int" parameterType="String">
+        select count(*) from bbs_t
+        where status = 0 and bname = #{bname}
+    </select>
+
+    <!--  view  -->
+    <select id="getView" resultMap="map1" parameterType="String">
+        select * from bbs_t where b_idx = #{b_idx}
+    </select>
+    <!-- 원글 저장 -->
+    <select id="add" parameterType="com.sist.ex0905_bbs.mybatis.vo.BbsVO">
+        insert into bbs_t(subject, writer, content, file_name, ori_name, write_date, ip, hit, bname, status)
+        values(#{subject}, #{writer}, #{content}, #{file_name}, #{ori_name}, now(), #{ip}, 0, #{bname}, 0)
+    </select>
+    <!-- 원글 삭제 -->
+    <update id="del" parameterType="String">
+        update bbs_t
+        set status = 1
+        where b_idx = #{b_idx}
+    </update>
+    <!-- 원글 수정 -->
+    <update id="rewrite" parameterType="Map">
+        update bbs_t
+        <trim prefix="set" suffixOverrides=",">
+            subject = #{subject},
+            content = #{content},
+            ip=#{ip},
+            <if test="file_name != null">
+            file_name = #{file_name},
+            ori_name = #{ori_name}
+            </if>
+        </trim>
+        where b_idx = #{b_idx}
+    </update>
+    <!-- 조회수증가 -->
+    <update id="hit" parameterType="String">
+        update bbs_t
+        set hit=hit+1
+        where b_idx = #{b_idx}
+    </update>
+
+    <select id="total" resultType="com.sist.ex0905_bbs.mybatis.vo.BbsVO">
+        select * from bbs_t
+    </select>
+
+    <select id="search" parameterType="map" resultType="com.sist.ex0905_bbs.mybatis.vo.BbsVO">
+        select * from bbs_t
+        <where>
+
+        <choose>
+            <when test="type == 0">
+                subject LIKE CONCAT('%' #{value} '%')
+            </when>
+            <when test="type == 1">
+                writer LIKE CONCAT('%' #{value} '%')
+            </when>
+            <when test="type == 2">
+                content LIKE CONCAT('%' #{value} '%')
+            </when>
+        </choose>
+        </where>
+    </select>
+</mapper>
