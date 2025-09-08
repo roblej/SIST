@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<form>
+  <label for="b_year">태어난 년도:</label>
+  <!--<input type="number" id="b_year" name="bYear"/>-->
+  <input type="text" id="b_year" name="bYear"/>
+  <button type="button" onclick="ex(this.form)">확인</button>
+</form>
+
+<script>
+  function checkNumber(str) {
+    // if (!isNaN(str)&&str.length === 4){
+    //   return 1;
+    // }else
+    //   return 0;
+    let value;
+    for(let i=0;i<str.length;i++){
+      let code = str.charCodeAt(i);
+      let ch = str.charAt(i);
+      // if(code<48 || code>57)  아스키코드로 비교
+      if(ch<'0'|| c>'9'){
+        value = false;
+        return
+      }
+      return value;
+    }
+  }
+  function ex(frm) {
+    //현재 날짜를 객체로 구하기
+    let now = new Date();
+    let c_year = now.getFullYear();
+    let ins_year = document.getElementById("b_year").value;
+    console.log(ins_year)
+    if(checkNumber(ins_year)){
+      let age = c_year - ins_year + 1;
+      alert("현재 나이는 " + age + "살 입니다.");
+    }else{
+      alert("문자열포함이거나 4자리를 작성하지않음.")
+      ins_year="";
+      document.getElementById("b_year").focus();
+    }
+  }
+</script>
+</body>
+</html>
