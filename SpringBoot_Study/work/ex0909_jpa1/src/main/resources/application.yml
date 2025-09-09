@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: ex0909_jpa1
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/my_db
+    username: root
+    password: 11111111
+
+  jpa:
+    show_sql: true
+    generate-ddl: true
+    properties:
+        hibernate:
+            format_sql: true
