@@ -93,7 +93,7 @@
             <c:forEach var="vo" items="${ar}" varStatus="vs">
                 <tr>
                     <td class="no">${page.totalCount-((page.nowPage-1)*page.numPerPage+vs.index)}</td>
-                    <td class="subject" style="text-align: left;">${vo.subject}</td>
+                    <td class="subject" style="text-align: left;"><a href="view?bname=${page.bname}&cPage=${page.nowPage}&b_idx=${vo.b_idx}">${vo.subject}</a></td>
                     <td class="writer">${vo.writer}</td>
                     <td class="reg">${vo.write_date}</td>
                     <td class="hit">${vo.hit}</td>

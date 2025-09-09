@@ -26,7 +26,7 @@
     </select>
 
     <!--  view  -->
-    <select id="getView" resultMap="map1" parameterType="String">
+    <select id="getBbs" resultMap="map1" parameterType="String">
         select * from bbs_t where b_idx = #{b_idx}
     </select>
     <!-- 원글 저장 -->
@@ -41,7 +41,7 @@
         where b_idx = #{b_idx}
     </update>
     <!-- 원글 수정 -->
-    <update id="rewrite" parameterType="Map">
+    <update id="edit" parameterType="com.sist.ex0908_bbs.vo.BbsVO">
         update bbs_t
         <trim prefix="set" suffixOverrides=",">
             subject = #{subject},
