@@ -59,4 +59,47 @@ class Ex0911JwtApplicationTests {
 		
 		assertThat(accessToken).isNotNull();
 	}
+
+	@Test
+	@DisplayName("동일한 SecretKey인지 확인")
+	void sameSecretKey(){
+		SecretKey sKey1 = jwtProvider.getSecretKey();
+		SecretKey sKey2 = jwtProvider.getSecretKey();
+		assertThat(sKey1 == sKey2).isTrue();
+	}
+
+	@Test
+	@DisplayName("유효한 토큰인지? 확인")
+	void TokenValidTest(){
+		Map<String,Object> claims = new HashMap<>();
+		claims.put("mid","admin");
+		claims.put("mname","이도");
+		claims.put("mphone","01012345678");
+
+		//토큰생성( -1을 넣어 바로 만료되는 토큰을 받는다.)
+		String token = jwtProvider.getToken(claims, 3600);
+		System.out.println("TOKEN = " + token);
+
+		assertThat(jwtProvider.verify(token)).isTrue();
+	}
+
+	@Test
+	@DisplayName("토큰으로 claims정보 확인")
+	void TokenClaimsTest(){
+		Map<String,Object> claims = new HashMap<>();
+		claims.put("mid","admin");
+		claims.put("mname","이도");
+		claims.put("mphone","01012345678");
+
+		String token = jwtProvider.getToken(claims, 3600);
+		System.out.println("TOKEN = " + token);
+		//이 토큰이 유효한지 검증을 받는다.
+		assertThat(jwtProvider.verify(token)).isTrue();
+
+		//토큰에 저장되어있는 정보를 받는다.
+		//(위 map과 동일한지 확인)
+		Map<String, Object> extractedClaims = jwtProvider.getClaims(token);
+		System.out.println("extractedClaims = " + extractedClaims);
+		System.out.println("map.name ="+claims.get("mname"));
+	}
 }
