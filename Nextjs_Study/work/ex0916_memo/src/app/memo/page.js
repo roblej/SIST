@@ -2,7 +2,7 @@
 import { Card, CardContent, Divider } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import MemoList from "../../../components/memolist";
+import MemoList from "../../components/memolist";
 
 export default function Memo() {
     const api_url = "/memo/all";
