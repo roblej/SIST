@@ -29,7 +29,7 @@ public class BbsService {
         return bbs;
     }
 
-     public Bbs save(String title, String content, String writer) {
+     public Bbs create(String title, String content, String writer) {
         Bbs bbs = Bbs.builder()
             .title(title)
             .content(content)

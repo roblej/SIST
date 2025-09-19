@@ -1,15 +1,16 @@
 "use client";
 import { Button, Table, TableBody, TableCell, TableContainer, TableRow, TextField, TextareaAutosize } from "@mui/material";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
+import axios from "axios";
 export default function Write() {
 
     //서버 url
-
-
+    const api_url = "/api/bbs/write";
+    const router = useRouter();
     //사용자가 입력한 객체 값들을 하나의 객체로 저장할 곳
     const [bbs, setBbs] = useState({
-        subject: '',
+        title: '',
         writer: '',
         content: ''
     });
@@ -19,8 +20,11 @@ export default function Write() {
     }
     function sendData() {
         //비동기식 서버통신
-        //bbs 객체의 내부요소 출력
-        console.log(bbs);
+        axios.post(api_url,JSON.stringify(bbs),{headers: {'Content-Type': 'application/json'}}).then(function(json){
+            console.log(json);
+            if(json.data.totalcount > 0)
+            router.push('/board');
+        });
     }
     return (
         <div style={{width: '80%', margin: '0 auto', padding: '20px'}}>
@@ -31,7 +35,7 @@ export default function Write() {
                     <TableBody >
                         <TableRow>
                             <TableCell>제목</TableCell>
-                            <TableCell><TextField label="제목" size="small" name="subject" id="subject" onChange={handleChange}/></TableCell>
+                            <TableCell><TextField label="제목" size="small" name="title" id="title" onChange={handleChange}/></TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell>작성자</TableCell>
