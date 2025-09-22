@@ -1,4 +1,4 @@
-package com.sist.ex0918_bbs.domain.bbs.entity.repository;
+package com.sist.ex0918_bbs.domain.bbs.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

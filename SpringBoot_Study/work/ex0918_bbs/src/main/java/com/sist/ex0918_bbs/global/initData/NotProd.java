@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.sist.ex0918_bbs.domain.bbs.entity.service.BbsService;
+import com.sist.ex0918_bbs.domain.bbs.service.BbsService;
 import com.sist.ex0918_bbs.domain.member.service.MemberService;
 
 @Configuration

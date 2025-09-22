@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sist.ex0918_bbs.domain.bbs.entity.Bbs;
-import com.sist.ex0918_bbs.domain.bbs.entity.service.BbsService;
+import com.sist.ex0918_bbs.domain.bbs.service.BbsService;
 import com.sist.ex0918_bbs.global.result.ResultData;
 
 import lombok.RequiredArgsConstructor;
