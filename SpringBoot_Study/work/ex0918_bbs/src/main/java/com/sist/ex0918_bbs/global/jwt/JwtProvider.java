@@ -34,7 +34,7 @@ public class JwtProvider {
         return secretKey;
     }
 
-    public String getToken(Map<String, Object> map, int seconds){
+    public String genToken(Map<String, Object> map, int seconds){
         long now = new Date().getTime();
 
         Date accessTokenExpiresIn = new Date(now+1000L*seconds);
@@ -84,5 +84,13 @@ public class JwtProvider {
         .build()
         .parseSignedClaims(token)
         .getPayload();
+    }
+
+    public String getAccessToken(Map<String,Object> map){
+        return genToken(map, 60*5);//5분
+    }
+
+    public String getRefreshToken(Map<String,Object> map){
+        return genToken(map, 60*60*24*100);//10일
     }
 }
