@@ -1,0 +1,15 @@
+spring:
+    application:
+        name: ex0930_docker
+    output:
+        ansi:
+            enabled: always
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://mysql80:3306/my_db
+        username: admin
+        password: 1111
+
+server:
+  port: 8080
+

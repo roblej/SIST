@@ -1,0 +1,22 @@
+# 컴포즈 내용의 예문
+services:
+  frontend:
+    image:front/webapp
+  
+  backend:
+    image:server/webapp
+
+  db:
+    image: mysql8
+#### 속성들
+image: 컨테이너의 이미지를 정의할 때
+build: dockerfile의 경로를 지정해 빌드할 때
+restart: 컨테이너 재시작할 때
+port: Host와 Container의 포트 바인딩 설정할 때
+volumes: Host에 지정된 경로로 컨테이너의 볼륨을 마운트할 떄
+container name: 컨테이너의 이름을 지정할 때
+command: 실행된 컨테이너의 쉘에서 실행시킬 쉘 명렁어를 설정할 때
+environment: 컨테이너의 환경변수를 설정할 때
+env_file: env파일을 이용하여 적용할 때
+depends_on: 컨테이너 간의 의존성을 설정할 때
+dockerfile: 빌드할 dockerfile의 이름이 'Dockerfile'이 아닐때

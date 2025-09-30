@@ -1,0 +1,16 @@
+spring:
+    application:
+        name: ex0930_compose
+    output:
+        ansi:
+            enabled: always
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://mysql8:3306/my_db
+        # url: jdbc:mysql://localhost:3306/my_db
+        username: admin
+        password: 1111
+
+server:
+  port: 8080
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.ex0930_compose.mapper.CommMapper">
+    <select id="commList" resultType="com.sist.ex0930_compose.vo.CommVO"
+            parameterType="String">
+        select * from comment_t where b_idx = #{b_idx}
+    </select>
+<!-- 댓글 저장 -->
+    <insert id="addComm" parameterType="com.sist.ex0930_compose.vo.CommVO">
+        insert into comment_t (b_idx, writer, content, pwd, write_date, ip)
+        values (#{b_idx}, #{writer}, #{content}, #{pwd}, #{write_date}, #{ip})
+    </insert>
+</mapper>
