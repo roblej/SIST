@@ -1,0 +1,29 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: frontend
+    volumes:
+      - static-files:/app/out
+    networks:
+      - sist_net
+  nginx:
+    image: nginx
+    networks:
+      - sist_net
+    restart: always
+    volumes:
+      - static-files:/usr/share/nginx/html:ro
+      - ./conf/default.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - '80:80'
+    depends_on:
+      - frontend
+
+networks:
+  sist_net:
+    driver: bridge
+
+volumes:
+  static-files:
