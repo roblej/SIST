@@ -20,16 +20,13 @@ public class EmpService {
     public Optional<Emp> findByEmpno(Long empno){
         return empRepository.findByEmpno(empno);
     }
-    public List<Emp> findByDeptno(Long deptno){
-        return empRepository.findByDeptno(deptno);
-    }
-    public List<Emp> findByJobAndDeptno(String job,Long deptno){
+    public List<Emp> findByJobAndDeptno(String job,String deptno){
         return empRepository.findByJobAndDeptno(job,deptno);
     }
-    public List<Emp> findByJobLikeAndDeptno(String job,Long deptno){
-        return empRepository.findByJobLikeAndDeptno(job,deptno);
+    public List<Emp> findByJobLikeAndDeptno(String job,String deptno){
+        return empRepository.findByJobLikeAndDeptno(job, deptno);
     }
-    public List<Emp> findByJobContainingAndDeptno(String job,Long deptno){
+    public List<Emp> findByJobContainingAndDeptno(String job,String deptno){
         return empRepository.findByJobContainingAndDeptno(job,deptno);
     }
 }

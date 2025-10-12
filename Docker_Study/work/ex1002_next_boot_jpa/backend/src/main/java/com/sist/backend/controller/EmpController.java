@@ -22,15 +22,24 @@ public class EmpController {
         return empService.findAll();
     }
 
-    @RequestMapping("findByEmpno")
+    @RequestMapping("/findByEmpno")
     public Object findByEmpno(@RequestParam Long empno) {
         return empService.findByEmpno(empno);
     }
     
-    @RequestMapping("findByJobAndDeptno")
-    public Object findByJobAndDeptno(@RequestParam String job, @RequestParam Long deptno) {
+    @RequestMapping("/findByJobAndDeptno")
+    public Object findByJobAndDeptno(@RequestParam String job, @RequestParam String deptno) {
         return empService.findByJobAndDeptno(job, deptno);
     }
+
+    @RequestMapping("/findByJobLikeAndDeptno")
+    public Object findByJobLikeAndDeptno(@RequestParam String job, @RequestParam String deptno) {
+        return empService.findByJobLikeAndDeptno(job, deptno);
+    }
     
+    @RequestMapping("/findByJobContainingAndDeptno")
+    public Object findByJobContainingAndDeptno(@RequestParam String job, @RequestParam String deptno) {
+        return empService.findByJobContainingAndDeptno(job, deptno);
+    }
     
 }

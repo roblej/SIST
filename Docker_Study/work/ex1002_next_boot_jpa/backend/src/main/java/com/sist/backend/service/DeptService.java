@@ -1,11 +1,8 @@
 package com.sist.backend.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.sist.backend.repository.DeptRepository;
-import com.sist.backend.store.Dept;
 
 import lombok.RequiredArgsConstructor;
 

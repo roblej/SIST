@@ -6,7 +6,7 @@ spring:
     name: backend
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/my_db
+    url: jdbc:mysql://mysql80:3306/my_db
     username: admin
     password: 1111
   jpa:

@@ -30,7 +30,8 @@ public class Emp {
     private LocalDate hiredate;
 
     @Column(name = "deptno",insertable = false,updatable = false)
-    private Long deptno;//추가/편집 시 자동으로 값을 지정 또는 수정되지 못하게함
+    // private Long deptno;//추가/편집 시 자동으로 값을 지정 또는 수정되지 못하게함
+    private String deptno;//추가/편집 시 자동으로 값을 지정 또는 수정되지 못하게함
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "deptno",referencedColumnName = "deptno")
