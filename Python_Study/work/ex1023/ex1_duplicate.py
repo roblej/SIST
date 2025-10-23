@@ -13,4 +13,7 @@ emp_dict = [
 ]
 df = DataFrame(emp_dict)
 print(df)
-print("=======================")
+print("=========중복확인===========")
+print(df.duplicated())
+print("==========중복데이터삭제===========")
+print(df.drop_duplicates())
