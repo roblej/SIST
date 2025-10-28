@@ -57,7 +57,7 @@ async def call_claude(prompt: str,model: str = "claude-3-5-haiku-latest") -> str
 async def main():
     print("동시에 API 호출하기(재시도 로직 포함)")
     prompt = "ec2에서 상태검사는 모두 통과이고 포트도 열어줬는데 ssh연결이 되지 않는 이유는 뭘까?"
-    result = await call_claude(prompt)
+    result = call_claude(prompt)
     print(result)
 
     try:
